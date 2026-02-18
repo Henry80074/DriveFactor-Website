@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DriveFactor — Risk Intelligence for Mobility</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #64748b;
+            --accent: #3b82f6;
+            --danger: #ef4444;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --bg: #ffffff;
+            --card-bg: #f8fafc;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --title-gradient: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        }
+
+        * { box-sizing: border-box; }
+
+        html, body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Inter', -apple-system, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+        body { background: #f8fafc; }
+
+        .section {
+            padding: 50px 0;
+        }
+
+        .section.alt {
+            background: var(--card-bg);
+        }
+
+        .section-dark {
+            background: var(--title-gradient);
+            color: #e2e8f0;
+        }
+
+        .section-dark .sub-headline,
+        .section-dark .feature-list li,
+        .section-dark p {
+            color: #cbd5f5;
+        }
+
+        .section-dark .headline span {
+            color: #93c5fd;
+        }
+
+        .navbar-custom {
+            padding: 18px 0;
+            background: rgba(15, 23, 42, 0.92);
+            backdrop-filter: blur(8px);
+        }
+
+        .navbar-custom .nav-link,
+        .navbar-custom .navbar-brand {
+            color: #e2e8f0;
+            font-weight: 600;
+        }
+
+        .navbar-custom .nav-link:hover {
+            color: #ffffff;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            border: none;
+            border-radius: 999px;
+            padding: 10px 20px;
+            font-weight: 600;
+        }
+
+        .btn-outline-light {
+            border-radius: 999px;
+            padding: 10px 20px;
+            font-weight: 600;
+        }
+
+        .headline {
+            color: var(--text-main);
+            font-weight: 800;
+            font-size: 2.4rem;
+            margin: 0 0 16px 0;
+            letter-spacing: -0.02em;
+        }
+
+        .headline span { color: var(--primary); }
+
+        .sub-headline {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin: 0 0 24px 0;
+            max-width: 900px;
+        }
+
+        .hero-wrap {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            border-radius: 24px;
+            padding: 28px;
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.35);
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            gap: 10px;
+            align-items: center;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 2rem;
+        }
+
+        .tech-card {
+            background: #f1f5f9;
+            border-radius: 16px;
+            padding: 28px;
+            height: 100%;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s ease;
+        }
+
+        .tech-card:hover {
+            border-color: var(--primary);
+            background: #ffffff;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .tech-card h4 { color: var(--primary); font-weight: 700; margin-bottom: 14px; }
+
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .feature-list li { margin-bottom: 0.9rem; }
+
+        .metric-card {
+            background: white;
+            border-radius: 14px;
+            padding: 20px;
+            border: 1px solid #e2e8f0;
+            height: 100%;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .map-frame {
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            overflow: hidden;
+            background: white;
+            height: 420px;
+        }
+
+        .cta-panel {
+            background: #0f172a;
+            color: white;
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.3);
+        }
+
+        .cta-panel strong { color: #f59e0b; }
+
+        .pill {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: #e2e8f0;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .logo-pill {
+            border: 1px solid #e2e8f0;
+            border-radius: 999px;
+            padding: 10px 18px;
+            font-weight: 600;
+            color: var(--text-muted);
+            background: white;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .stat-tile {
+            background: white;
+            border-radius: 18px;
+            border: 1px solid #e2e8f0;
+            padding: 24px;
+            text-align: left;
+        }
+
+        .stat-tile h3 {
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .footer {
+            background: #0b1120;
+            color: #94a3b8;
+            padding: 50px 0;
+        }
+
+        .footer a { color: #cbd5f5; text-decoration: none; }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="DRIVEFACTOR_LANDING_PAGE.html">DriveFactor</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+            <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+                <li class="nav-item"><a class="nav-link" href="DRIVEFACTOR_LANDING_PAGE.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="DRIVEFACTOR_PREDICT.html">Predict</a></li>
+                <li class="nav-item"><a class="nav-link" href="DRIVEFACTOR_REACT.html">React</a></li>
+                <li class="nav-item"><a class="nav-link" href="DRIVEFACTOR_COACH.html">Coach</a></li>
+                <li class="nav-item"><a class="nav-link" href="DRIVEFACTOR_LANDING_PAGE.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section class="section section-dark" id="top">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <div class="hero-badge">DriveFactor Platform</div>
+                <h1 class="headline" style="color: white;">Predict future <span>crash risk</span> with confidence</h1>
+                <div class="d-flex flex-wrap gap-3 mt-4">
+                    <a class="btn btn-primary" href="#contact">Request a demo</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section" id="predict">
+    <div class="container">
+        <div class="row g-4 align-items-center">
+            <div class="col-lg-6">
+                <h2 class="headline">Driven by the Road Risk Engine
+                </h2>
+                <p class="sub-headline">DriveFactor's advanced software suite combines AI with high resolution geospatial and traffic data to predict crash risk for any region, corridor, or network segment.</p>
+                <div class="metric-card">
+                    <h4 style="color: var(--primary); font-weight: 700;"></h4>
+                    <ul class="feature-list" style="margin-top: 16px;">
+                        <li><strong>Regional forecasts:</strong> quantify baseline risk across cities or counties.</li>
+                        <li><strong>Corridor hotspots:</strong> pinpoint the riskiest roads and junctions.</li>
+                        <li><strong>Temporal exposure:</strong> identify peak-hour surges and understand how risk changes over time.</li>
+                        <li><strong>Predictive models:</strong> confidently predict road risk, even on new road layouts or areas with sparse crash history.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="map-frame">
+                    <img
+                        title="Laira Bridge Risk Map"
+                        src="crash-density.png"
+                        style="width: 100%; height: 100%; border: 0;"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section alt" id="suite">
+    <div class="container">
+        <h2 class="headline">The DriveFactor Suite</h2>
+        <p class="sub-headline">Three modules, one risk engine.</p>
+
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="tech-card">
+                    <h4>Predict</h4>
+                    <p style="color: var(--text-muted);">Predictive risk intelligence for roads and regions.</p>
+                    <ul class="feature-list">
+                        <li>Spatial risk maps for identifying dangerous corridors and junctions</li>
+                        <li>Dynamic risk maps by day of week, season and weather conditions</li>
+                        <li>Regional forecasts for proactive safety management</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="tech-card">
+                    <h4>React</h4>
+                    <p style="color: var(--text-muted);">Actionable intelligence for road safety interventions.</p>
+                    <ul class="feature-list">
+                        <li>Supports targeted safety investments and audits</li>
+                        <li>Matched comparison for intervention evaluation</li>
+                        <li>Identify prime candidates for proactive safety management</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="tech-card">
+                    <h4>Coach</h4>
+                    <p style="color: var(--text-muted);">Data-driven driver performance reporting for fleet safety management and insurers.</p>
+                    <ul class="feature-list">
+                        <li>Contextual insights for driver behavior</li>
+                        <li>Multi-dimensional driver performance metrics</li>
+                        <li>Personalized coaching recommendations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section alt" id="usecases">
+    <div class="container">
+        <h2 class="headline">Built for road safety leaders, insurers and local authorities</h2>
+        <p class="sub-headline">DriveFactor enhances your pre-existing workflows and provides reliable, explainable intelligence.</p>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="metric-card">
+                    <div class="metric-value">Safety Investment</div>
+                    <div class="pill">Public Sector and Road Safety Management</div>
+                    <p style="color: var(--text-muted); margin-top: 10px;">Identify high-risk locations to target infrastructure upgrades and enforcement.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="metric-card">
+                    <div class="metric-value">Portfolio Pricing</div>
+                    <div class="pill">Insurers</div>
+                    <p style="color: var(--text-muted); margin-top: 10px;">Forecast risk to set pricing with full regional context.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="metric-card">
+                    <div class="metric-value">Operational Intelligence</div>
+                    <div class="pill">Fleets</div>
+                    <p style="color: var(--text-muted); margin-top: 10px;">Understand changing risk patterns and improve fleet safety management.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="contact">
+    <div class="container">
+        <div class="cta-panel">
+            <h3 style="margin-bottom: 8px; font-weight: 700;">Want to learn more about how DriveFactor can help your organization?</h3>
+            <p style="margin: 0; color: #cbd5e1;">Contact <strong>hello@drivefactor.ai</strong> to schedule a demo and deployment plan.</p>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-5">
+                <h5 style="color: white; font-weight: 700;">DriveFactor</h5>
+                <p class="mb-0">Predictive crash risk intelligence for mobility leaders.</p>
+            </div>
+            <div class="col-md-3">
+                <h6 style="color: white; font-weight: 600;">Platform</h6>
+                <p class="mb-1"><a href="#platform">Overview</a></p>
+                <p class="mb-1"><a href="#suite">Predict · React · Coach</a></p>
+                <p class="mb-1"><a href="#insights">Insights</a></p>
+            </div>
+            <div class="col-md-4">
+                <h6 style="color: white; font-weight: 600;">Contact</h6>
+                <p class="mb-1">hello@drivefactor.ai</p>
+                <p class="mb-0">London · Devon · Remote</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

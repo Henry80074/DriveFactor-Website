@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DriveFactor Coach — Driver Coaching & Fleet Safety</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #64748b;
+            --accent: #3b82f6;
+            --danger: #ef4444;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --bg: #ffffff;
+            --card-bg: #f8fafc;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --title-gradient: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        }
+
+        * { box-sizing: border-box; }
+    html, body { background-color: var(--bg); color: var(--text-main); font-family: 'Inter', -apple-system, sans-serif; line-height: 1.6; margin: 0; padding: 0; width: 100%; }
+    body { background: #f8fafc; }
+    .section { padding: 30px 0; }
+    .section.alt { background: var(--card-bg); padding: 30px 0; }
+    .section-dark { background: var(--title-gradient); color: #e2e8f0; }
+    .section-dark .sub-headline, .section-dark .feature-list li, .section-dark p { color: #cbd5f5; }
+    .section-dark .headline span { color: #93c5fd; }
+    .navbar-custom { padding: 18px 0; background: rgba(15, 23, 42, 0.92); backdrop-filter: blur(8px); }
+    .navbar-custom .nav-link, .navbar-custom .navbar-brand { color: #e2e8f0; font-weight: 600; }
+    .navbar-custom .nav-link:hover { color: #ffffff; }
+    .btn-primary { background: var(--primary); border: none; border-radius: 999px; padding: 10px 20px; font-weight: 600; }
+    .btn-outline-light { border-radius: 999px; padding: 10px 20px; font-weight: 600; }
+    .headline { color: var(--text-main); font-weight: 800; font-size: 2.4rem; margin: 0 0 16px 0; letter-spacing: -0.02em; }
+    .headline span { color: var(--primary); }
+    .hero-badge {
+        display: inline-flex;
+        gap: 10px;
+        align-items: center;
+        background: rgba(37, 99, 235, 0.1);
+        color: var(--primary);
+        padding: 8px 14px;
+        border-radius: 999px;
+        font-weight: 700;
+        font-size: 2rem;
+    }
+    .cta-panel strong { color: #f59e0b; }
+
+    .sub-headline { color: var(--text-muted); font-size: 1.1rem; margin: 0 0 0 0; max-width: 900px; }
+    .hero-wrap { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(148, 163, 184, 0.3); border-radius: 24px; padding: 28px; box-shadow: 0 18px 40px rgba(15, 23, 42, 0.35); }
+    .feature-list { list-style: none; padding-left: 0; margin: 0; font-size: 0.95rem; }
+    .feature-list li { margin-bottom: 0.9rem; }
+    .metric-card { background: white; border-radius: 14px; padding: 16px; border: 1px solid #e2e8f0; height: 100%; }
+    .cta-panel { background: #0f172a; color: white; border-radius: 24px; padding: 40px; text-align: center; box-shadow: 0 18px 40px rgba(15, 23, 42, 0.3); }
+    .stat-tile { background: white; border-radius: 4px; border: 1px solid #e2e8f0; padding: 16px; text-align: left; }
+    /* tighten vertical gaps inside rows */
+    .row.g-4 { row-gap: 12px; }
+    /* Figure styles for embedded screenshots */
+    .figure { text-align: center; margin: 28px 0; }
+    .figure img { max-width: 720px; width: 100%; height: auto; border-radius: 12px; box-shadow: 0 12px 30px rgba(15,23,42,0.08); }
+    .figure-caption { color: var(--text-muted); font-size: 0.95rem; margin-top: 8px; }
+
+    /* Footer styles (match Predict/React pages) */
+    .footer {
+        background: #0b1120;
+        color: #94a3b8;
+        padding: 50px 0;
+    }
+
+    .footer a { color: #cbd5f5; text-decoration: none; }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="DRIVEFACTOR_LANDING_PAGE.html">DriveFactor</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+            <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+                <li class="nav-item"><a class="nav-link" href="DRIVEFACTOR_LANDING_PAGE.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="DRIVEFACTOR_PREDICT.html">Predict</a></li>
+                <li class="nav-item"><a class="nav-link" href="DRIVEFACTOR_REACT.html">React</a></li>
+                <li class="nav-item"><a class="nav-link active" href="DRIVEFACTOR_COACH.html">Coach</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section class="section section-dark">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <div class="hero-badge">Coach</div>
+                <h1 class="headline" style="color: white;">Contextual intelligence for <span> driving behaviour and safety</span></h1>
+                <div class="d-flex flex-wrap gap-3 mt-4">
+                    <a class="btn btn-primary" href="#report">See a sample report</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="impact" style="margin-top: 20px;">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-12">
+                <h2 class="headline">Create safer drivers using the power of contextual insights</h2>
+                <p class="sub-headline">Typical telematics data has a problem. It lacks the context required to provide meaningful insights and personalised training. Coach turns noisy telematics data into trusted, contextual intelligence by enriching every event with road geometry, time‑of‑day and weather conditions</p>
+                <ol class="feature-list feature-list-numbered" style="margin-bottom: 0;">
+                    <li><strong>Accurate performance analysis:</strong> Consistent scoring for speed, braking, junction handling, night driving and weather sensitivity.</li>
+                    <li><strong>Targeted coaching:</strong> Evidence‑linked recommendations that show drivers exactly what to improve and why.</li>
+                    <li><strong>Contextual intelligence:</strong> Enriched event data that provides the context needed for fair, evidence‑backed scores that explain behaviour, prioritise risk and support driver coaching.</li>
+                    <li><strong>Driver buy‑in:</strong> Fairer feedback, clear progress, and practical coaching that improves engagement and reduces incidents.</li>
+                    <li><strong>Defensible outcomes:</strong> Transparent audit trails for compliance, insurer reviews and claims reduction.</li>
+                </ol>
+                <p class="sub-headline" style="margin-top: 16px;">The result: fewer incidents, lower claims, and a coaching programme drivers will actually buy into.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section alt" id="how">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-12">
+                <h2 class="headline">How Coach turns data into action</h2>
+                <p class="sub-headline">A clear, repeatable process that makes coaching consistent, defensible, and measurable.</p>
+            </div>
+            <div class="col-12">
+                <div class="stat-tile">
+                    <ol style="padding-left: 1rem; color: var(--text-muted);">
+                        <li><strong>Ingest:</strong> Trip GPS, events, and telematics streams.</li>
+                        <li><strong>Contextualise:</strong> Map‑matching, weather conditions, exposure, time‑of‑day.</li>
+                        <li><strong>Score & explain:</strong> Behaviour models with per‑event evidence.</li>
+                        <li><strong>Coach:</strong> Targeted interventions, alerts and training assignments.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="report">
+    <div class="container">
+        <div class="metric-card" style="margin-bottom: 16px;">
+            <h4 style="color: var(--primary); font-weight: 700;">Sample driver performance report</h4>
+            <a class="btn btn-primary" href="driver-report.html" target="_blank" rel="noopener">View sample report</a>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="section" id="contact">
+    <div class="container">
+        <div class="cta-panel">
+            <h3 style="margin-bottom: 8px; font-weight: 700;">What to learn more about how DriveFactor can help your organization?</h3>
+            <p style="margin: 0; color: #cbd5e1;">Contact <strong>hello@drivefactor.ai</strong> to schedule a demo and pilot plan.</p>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-5">
+                <h5 style="color: white; font-weight: 700;">DriveFactor</h5>
+                <p class="mb-0">Predictive crash risk intelligence for mobility leaders.</p>
+            </div>
+            <div class="col-md-3">
+                <h6 style="color: white; font-weight: 600;">Navigate</h6>
+                <p class="mb-1"><a href="DRIVEFACTOR_LANDING_PAGE.html">Home</a></p>
+                <p class="mb-0"><a href="#impact">Impact</a></p>
+            </div>
+            <div class="col-md-4">
+                <h6 style="color: white; font-weight: 600;">Contact</h6>
+                <p class="mb-1">hello@drivefactor.ai</p>
+                <p class="mb-0">London · Devon · Remote</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

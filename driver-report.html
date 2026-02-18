@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Performance Report</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="report-styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Report Header -->
+    <section class="report-header">
+        <div class="container">
+            <div class="report-title-section">
+                <h1>Driver Performance Report</h1>
+                <p class="report-period">Reporting Period: 1 Oct 2025 - 31 Oct 2025</p>
+            </div>
+            <div class="driver-info-card">
+                <div class="driver-photo">
+                    <div class="photo-placeholder">JD</div>
+                </div>
+                <div class="driver-details">
+                    <h2>John Davies</h2>
+                    <p class="driver-id">Driver ID: FLT-2847</p>
+                    <p class="vehicle">Vehicle: Van #142 (Ford Transit)</p>
+                    <div class="driver-stats-quick">
+                        <span class="stat-badge">1,247 miles driven</span>
+                        <span class="stat-badge">89 trips</span>
+                        <span class="stat-badge">28 days active</span>
+                    </div>
+                </div>
+                <div class="risk-score-badge">
+                    <div class="score-circle good">
+                        <span class="score-value">82</span>
+                        <span class="score-label">Safety Score</span>
+                    </div>
+                    <p class="risk-level">Great</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main>
+
+    <!-- Driver Archetype -->
+
+
+    <!-- Spider Graph Performance -->
+    <section class="spider-section">
+        <div class="container">
+            <h2 class="section-title">Multi-Dimensional Performance Analysis</h2>
+            <p style="margin: 0 0 16px; color: #64748b;">Scores compare this driver to fleet norms across key behaviour dimensions.</p>
+            <div class="spider-container">
+                <div class="spider-chart-wrapper">
+                    <canvas id="spiderChart"></canvas>
+                </div>
+                <div class="spider-legend">
+                    <h3>Performance Dimensions</h3>
+                    <div class="dimension-list">
+                        <div class="dimension-item good">
+                            <span class="dimension-dot"></span>
+                            <span class="dimension-name">Speed Management</span>
+                            <span class="dimension-score">85/100</span>
+                        </div>
+                        <div class="dimension-item good">
+                            <span class="dimension-dot"></span>
+                            <span class="dimension-name">Urban Driving</span>
+                            <span class="dimension-score">82/100</span>
+                        </div>
+                        <div class="dimension-item good">
+                            <span class="dimension-dot"></span>
+                            <span class="dimension-name">Traffic Navigation</span>
+                            <span class="dimension-score">82/100</span>
+                        </div>
+                        <div class="dimension-item moderate">
+                            <span class="dimension-dot"></span>
+                            <span class="dimension-name">Weather Adaptation</span>
+                            <span class="dimension-score">77/100</span>
+                        </div>
+                        <div class="dimension-item moderate">
+                            <span class="dimension-dot"></span>
+                            <span class="dimension-name">Night Driving</span>
+                            <span class="dimension-score">73/100</span>
+                        </div>
+                        <div class="dimension-item poor">
+                            <span class="dimension-dot"></span>
+                            <span class="dimension-name">Highway Performance</span>
+                            <span class="dimension-score">59/100</span>
+                        </div>
+                        <div class="dimension-item good">
+                            <span class="dimension-dot"></span>
+                            <span class="dimension-name">Smooth Acceleration</span>
+                            <span class="dimension-score">88/100</span>
+                        </div>
+                        <div class="dimension-item good">
+                            <span class="dimension-dot"></span>
+                            <span class="dimension-name">Braking Control</span>
+                            <span class="dimension-score">88/100</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Events -->
+    <section class="events-section">
+        <div class="container">
+            <h2 class="section-title">Notable Driving Events</h2>
+            <p style="margin: 0 0 16px; color: #64748b;">Highlighted events from the reporting period, ordered by severity and recency.</p>
+            <div class="events-summary">
+                <div class="event-stat">
+                    <span class="event-number critical">3</span>
+                    <span class="event-label">Critical Risk Events</span>
+                </div>
+                <div class="event-stat">
+                    <span class="event-number high">5</span>
+                    <span class="event-label">High Risk Events</span>
+                </div>
+                <div class="event-stat">
+                    <span class="event-number medium">4</span>
+                    <span class="event-label">Medium Risk Events</span>
+                </div>
+                <div class="event-stat">
+                    <span class="event-number low">2</span>
+                    <span class="event-label">Low Risk Events</span>
+                </div>
+            </div>
+
+            <div class="events-timeline">
+                <h3>3 Most Recent Driving Events</h3>
+                <div class="event-card critical-risk">
+                    <div class="event-header">
+                        <span class="event-badge critical">CRITICAL RISK</span>
+                        <span class="event-date">2025-11-19</span>
+                    </div>
+                    <div class="event-details">
+                        <h4>Harsh Cornering</h4>
+                        <p class="event-location">Road Type: B - 2 lane - urban</p>
+                        <div class="event-metrics">
+                            <div class="metric">
+                                <span class="metric-label">Conditions</span>
+                                <span class="metric-value critical">Challenging</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Road Risk</span>
+                                <span class="metric-value">High Risk</span>
+                            </div>
+                        </div>
+                        <div class="event-context">
+                            <p><strong>Context Analysis:</strong> Driver encountered <strong>challenging conditions</strong> on a <strong>high risk</strong> segment.</p>
+                            <ul style="margin-top: 5px; margin-bottom: 5px; padding-left: 20px;">
+                                <li><strong>Environment:</strong> Rain, Darkness</li>
+                                <li><strong>Road Type:</strong> B - 2 lane - urban</li>
+                            </ul>
+                        </div>
+                        <div class="impact-section"><span class="impact-label">Risk Categories:</span><div class="impact-tags"><span class="impact-tag">Weather Adaptation</span><span class="impact-tag">Night Driving</span><span class="impact-tag">Traffic Navigation</span></div></div>
+                        <div id="map_event_0" style="height: 200px; width: 100%; margin-top: 15px; border-radius: 8px; z-index: 1;"></div>
+                    </div>
+                </div>
+                <div class="event-card critical-risk">
+                    <div class="event-header">
+                        <span class="event-badge critical">CRITICAL RISK</span>
+                        <span class="event-date">2025-10-18</span>
+                    </div>
+                    <div class="event-details">
+                        <h4>Harsh Braking</h4>
+                        <p class="event-location">Road Type: A - 3+ lanes - urban</p>
+                        <div class="event-metrics">
+                            <div class="metric">
+                                <span class="metric-label">Conditions</span>
+                                <span class="metric-value warning">Moderate</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Road Risk</span>
+                                <span class="metric-value">High Risk</span>
+                            </div>
+                        </div>
+                        <div class="event-context">
+                            <p><strong>Context Analysis:</strong> Driver encountered <strong>moderate conditions</strong> on a <strong>high risk</strong> segment.</p>
+                            <ul style="margin-top: 5px; margin-bottom: 5px; padding-left: 20px;">
+                                <li><strong>Environment:</strong> Clear, Darkness</li>
+                                <li><strong>Road Type:</strong> A - 3+ lanes - urban</li>
+                            </ul>
+                        </div>
+                        <div class="impact-section"><span class="impact-label">Risk Categories:</span><div class="impact-tags"><span class="impact-tag">Braking Control</span><span class="impact-tag">Highway Performance</span><span class="impact-tag">Night Driving</span><span class="impact-tag">Smooth Acceleration</span><span class="impact-tag">Urban Driving</span></div></div>
+                        <div id="map_event_1" style="height: 200px; width: 100%; margin-top: 15px; border-radius: 8px; z-index: 1;"></div>
+                    </div>
+                </div>
+                <div class="event-card critical-risk">
+                    <div class="event-header">
+                        <span class="event-badge critical">CRITICAL RISK</span>
+                        <span class="event-date">2025-10-17</span>
+                    </div>
+                    <div class="event-details">
+                        <h4>Speeding</h4>
+                        <p class="event-location">Road Type: A - 3+ lanes - urban</p>
+                        <div class="event-metrics">
+                            <div class="metric">
+                                <span class="metric-label">Conditions</span>
+                                <span class="metric-value success">Ideal</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Road Risk</span>
+                                <span class="metric-value">High Risk</span>
+                            </div>
+                        </div>
+                        <div class="event-context">
+                            <p><strong>Context Analysis:</strong> Driver encountered <strong>ideal conditions</strong> on a <strong>high risk</strong> segment.</p>
+                            <ul style="margin-top: 5px; margin-bottom: 5px; padding-left: 20px;">
+                                <li><strong>Environment:</strong> Clear, Daylight</li>
+                                <li><strong>Road Type:</strong> A - 3+ lanes - urban</li>
+                            </ul>
+                        <div class="impact-section"><span class="impact-label">Risk Categories:</span><div class="impact-tags"><span class="impact-tag">Highway Performance</span><span class="impact-tag">Speed Management</span><span class="impact-tag">Urban Driving</span></div></div>
+                        <div id="map_event_2" style="height: 200px; width: 100%; margin-top: 15px; border-radius: 8px; z-index: 1;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommendations -->
+    <section class="recommendations-section">
+        <div class="container">
+            <h2 class="section-title">Personalized Training Recommendations</h2>
+            <p style="margin: 0 0 16px; color: #64748b;">Priority actions selected to reduce risk based on recent driving patterns.</p>
+            <div class="recommendations-grid">
+                <div class="recommendation-card priority-high">
+                    <div class="recommendation-header">
+                        <span class="priority-badge">High Priority</span>
+                    </div>
+                    <h3>Night Driving & Low Visibility Training</h3>
+                    <p>Your night driving performance is 32% below fleet average. Focus on hazard perception and speed adjustment in low light conditions.</p>
+                    <div class="recommendation-modules">
+                        <span class="module">🎓 Module 1: Night Hazard Recognition</span>
+                        <span class="module">🎓 Module 2: Headlight & Vision Management</span>
+                        <span class="module">🎓 Module 3: Speed Adjustment for Visibility</span>
+                    </div>
+                </div>
+
+                <div class="recommendation-card priority-medium">
+                    <div class="recommendation-header">
+                        <span class="priority-badge medium">Medium Priority</span>
+                    </div>
+                    <h3>Junction & Roundabout Safety</h3>
+                    <p>Speed management at junctions could be improved. 3 high-risk events at roundabouts this month.</p>
+                    <div class="recommendation-modules">
+                        <span class="module">🎓 Module 1: Junction Approach Speed</span>
+                        <span class="module">🎓 Module 2: Roundabout Navigation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trend Analysis -->
+    <section class="trends-section">
+        <div class="container">
+            <h2 class="section-title">Performance Trends</h2>
+            <p style="margin: 0 0 16px; color: #64748b;">Month-over-month changes to track coaching effectiveness.</p>
+            <div class="trends-grid">
+                <div class="trend-card improving">
+                    <h3>Speed Management ↗</h3>
+                    <p class="trend-change">+8% improvement vs last month</p>
+                    <div class="mini-chart">
+                        <canvas id="speedTrend"></canvas>
+                    </div>
+                </div>
+                <div class="trend-card declining">
+                    <h3>Night Performance ↘</h3>
+                    <p class="trend-change">-12% decline vs last month</p>
+                    <div class="mini-chart">
+                        <canvas id="nightTrend"></canvas>
+                    </div>
+                </div>
+                <div class="trend-card stable">
+                    <h3>Overall Safety Score →</h3>
+                    <p class="trend-change">82 (stable, +2 pts)</p>
+                    <div class="mini-chart">
+                        <canvas id="riskTrend"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+
+    <script>
+// Spider Chart
+const ctx = document.getElementById('spiderChart').getContext('2d');
+const spiderChart = new Chart(ctx, {
+    type: 'radar',
+    data: {
+        labels: [
+            'Speed Management',
+            'Urban Driving',
+            'Traffic Navigation',
+            'Weather Adaptation',
+            'Night Driving',
+            'Highway Performance',
+            'Smooth Acceleration',
+            'Braking Control'
+        ],
+        datasets: [{
+            label: 'John Davies',
+            data: [85, 82, 82, 77, 73, 59, 88, 88],
+            fill: true,
+            backgroundColor: 'rgba(37, 99, 235, 0.2)',
+            borderColor: 'rgb(37, 99, 235)',
+            pointBackgroundColor: 'rgb(37, 99, 235)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(37, 99, 235)',
+            borderWidth: 2
+        }, {
+            label: 'Fleet Average',
+            data: [75, 72, 70, 68, 65, 70, 73, 72],
+            fill: true,
+            backgroundColor: 'rgba(100, 116, 139, 0.1)',
+            borderColor: 'rgb(100, 116, 139)',
+            pointBackgroundColor: 'rgb(100, 116, 139)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(100, 116, 139)',
+            borderWidth: 1,
+            borderDash: [5, 5]
+        }]
+    },
+    options: {
+        elements: {
+            line: {
+                borderWidth: 3
+            }
+        },
+        scales: {
+            r: {
+                angleLines: {
+                    display: true
+                },
+                suggestedMin: 0,
+                suggestedMax: 100,
+                ticks: {
+                    stepSize: 20
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: {
+                    padding: 20,
+                    font: {
+                        size: 12
+                    }
+                }
+            }
+        }
+    }
+});
+
+// Speed Trend Mini Chart
+const speedCtx = document.getElementById('speedTrend').getContext('2d');
+new Chart(speedCtx, {
+    type: 'line',
+    data: {
+        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+        datasets: [{
+            data: [84, 87, 90, 92],
+            borderColor: 'rgb(16, 185, 129)',
+            backgroundColor: 'rgba(16, 185, 129, 0.1)',
+            fill: true,
+            tension: 0.4
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: false
+            }
+        },
+        scales: {
+            y: {
+                display: false,
+                min: 70,
+                max: 100
+            },
+            x: {
+                display: false
+            }
+        }
+    }
+});
+
+// Night Performance Trend Mini Chart
+const nightCtx = document.getElementById('nightTrend').getContext('2d');
+new Chart(nightCtx, {
+    type: 'line',
+    data: {
+        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+        datasets: [{
+            data: [53, 48, 45, 41],
+            borderColor: 'rgb(239, 68, 68)',
+            backgroundColor: 'rgba(239, 68, 68, 0.1)',
+            fill: true,
+            tension: 0.4
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: false
+            }
+        },
+        scales: {
+            y: {
+                display: false,
+                min: 30,
+                max: 60
+            },
+            x: {
+                display: false
+            }
+        }
+    }
+});
+
+// Risk Score Trend Mini Chart
+const riskCtx = document.getElementById('riskTrend').getContext('2d');
+new Chart(riskCtx, {
+    type: 'line',
+    data: {
+        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+        datasets: [{
+            data: [52, 53, 54, 54],
+            borderColor: 'rgb(245, 158, 11)',
+            backgroundColor: 'rgba(245, 158, 11, 0.1)',
+            fill: true,
+            tension: 0.4
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: false
+            }
+        },
+        scales: {
+            y: {
+                display: false,
+                min: 40,
+                max: 70
+            },
+            x: {
+                display: false
+            }
+        }
+    }
+});
+
+// Smooth scroll for navigation
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // Add fade-in animation to sections
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+    
+    sections.forEach(section => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(20px)';
+        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(section);
+    });
+});
+
+</script>
+<script>
+
+                        setTimeout(function() {
+                            var map_0 = L.map('map_event_0').setView([58.51562903694127, -3.4848360824929645], 15);
+                            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                attribution: '© OpenStreetMap contributors'
+                            }).addTo(map_0);
+                            
+                            var geojsonFeature_0 = {"type":"LineString","coordinates":[[-3.4866168,58.514828801],[-3.4861354,58.514907301],[-3.4857609,58.514993601],[-3.4854806,58.515086701],[-3.485312,58.515155701],[-3.4851539,58.515229601],[-3.4849902,58.515323101],[-3.4848814,58.515401901],[-3.4846521,58.515586501],[-3.4837943,58.516488601],[-3.483536,58.516699501]]};
+                            L.geoJSON(geojsonFeature_0, {
+                                style: function(feature) {
+                                    return {color: "#ff0000", weight: 5, opacity: 0.7};
+                                }
+                            }).addTo(map_0);
+                            
+                            // Fix map size after render
+                            setTimeout(function() { map_0.invalidateSize(); }, 100);
+                        }, 500);
+                        
+
+                        setTimeout(function() {
+                            var map_1 = L.map('map_event_1').setView([52.64092219980941, 1.3280441138432815], 15);
+                            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                attribution: '© OpenStreetMap contributors'
+                            }).addTo(map_1);
+                            
+                            var geojsonFeature_1 = {"type":"LineString","coordinates":[[1.3280438,52.640834399],[1.3280436,52.640898199],[1.3280451,52.641009999]]};
+                            L.geoJSON(geojsonFeature_1, {
+                                style: function(feature) {
+                                    return {color: "#ff0000", weight: 5, opacity: 0.7};
+                                }
+                            }).addTo(map_1);
+                            
+                            // Fix map size after render
+                            setTimeout(function() { map_1.invalidateSize(); }, 100);
+                        }, 500);
+                        
+
+                        setTimeout(function() {
+                            var map_2 = L.map('map_event_2').setView([52.63582139913557, 1.2783965], 15);
+                            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                attribution: '© OpenStreetMap contributors'
+                            }).addTo(map_2);
+                            
+                            var geojsonFeature_2 = {"type":"LineString","coordinates":[[1.2784037,52.635754899],[1.2783893,52.635887899]]};
+                            L.geoJSON(geojsonFeature_2, {
+                                style: function(feature) {
+                                    return {color: "#ff0000", weight: 5, opacity: 0.7};
+                                }
+                            }).addTo(map_2);
+                            
+                            // Fix map size after render
+                            setTimeout(function() { map_2.invalidateSize(); }, 100);
+                        }, 500);
+                        
+
+                        setTimeout(function() {
+                            var map_3 = L.map('map_event_3').setView([52.629528477502205, 1.2598772561484923], 15);
+                            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                attribution: '© OpenStreetMap contributors'
+                            }).addTo(map_3);
+                            
+                            var geojsonFeature_3 = {"type":"LineString","coordinates":[[1.2598584,52.629605999],[1.2598805,52.629561199],[1.259882,52.629548599],[1.2598865,52.629510199],[1.2598695,52.629450099]]};
+                            L.geoJSON(geojsonFeature_3, {
+                                style: function(feature) {
+                                    return {color: "#ff0000", weight: 5, opacity: 0.7};
+                                }
+                            }).addTo(map_3);
+                            
+                            // Fix map size after render
+                            setTimeout(function() { map_3.invalidateSize(); }, 100);
+                        }, 500);
+                        
+
+                        setTimeout(function() {
+                            var map_4 = L.map('map_event_4').setView([52.66008106821645, 1.3116783304367465], 15);
+                            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                attribution: '© OpenStreetMap contributors'
+                            }).addTo(map_4);
+                            
+                            var geojsonFeature_4 = {"type":"LineString","coordinates":[[1.31057,52.659027399],[1.3107824,52.659226799],[1.3110421,52.659477499],[1.3111513,52.659582899],[1.3114312,52.659858899],[1.3115837,52.660010999],[1.311682,52.660109099],[1.3120327,52.660442999],[1.3122394,52.660617099],[1.3123973,52.660747699],[1.3126112,52.660922699],[1.3128324,52.661115999]]};
+                            L.geoJSON(geojsonFeature_4, {
+                                style: function(feature) {
+                                    return {color: "#ff0000", weight: 5, opacity: 0.7};
+                                }
+                            }).addTo(map_4);
+                            
+                            // Fix map size after render
+                            setTimeout(function() { map_4.invalidateSize(); }, 100);
+                        }, 500);
+                        
+</script>
+</body>
+</html>
