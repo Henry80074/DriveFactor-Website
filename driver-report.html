@@ -9,6 +9,19 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Mobile-friendly tweaks for report pages */
+        @media (max-width: 991px) {
+            .container { padding-left: 12px; padding-right: 12px; }
+            .report-header .driver-info-card { display: block; }
+            .spider-chart-wrapper, .spider-container { width: 100%; }
+            [id^="map_event_"] { height: 180px !important; }
+        }
+        @media (max-width: 576px) {
+            [id^="map_event_"] { height: 150px !important; }
+            .driver-info-card { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
     <!-- Report Header -->

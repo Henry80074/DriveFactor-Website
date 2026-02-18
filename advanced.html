@@ -153,6 +153,17 @@
                 font-size: 10px;
             }
         }
+        /* Additional small-screen adjustments for general mobile readability */
+        @media (max-width: 991px) {
+            #control-panel { width: 200px; padding: 8px; top: 8px; right: 8px; }
+            #legend { left: 8px; bottom: 8px; padding: 6px; }
+            #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+        }
+
+        @media (max-width: 576px) {
+            #control-panel { width: 180px; max-height: 36vh; padding: 6px; }
+            #legend { padding: 6px; font-size: 11px; }
+        }
     </style>
 </head>
 <body>
