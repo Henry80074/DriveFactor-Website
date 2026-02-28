@@ -49,7 +49,7 @@
             ],
             datasets: [{
                 label: 'John Davies',
-                data: [92, 85, 78, 52, 41, 68, 81, 65],
+                data: [85, 82, 82, 77, 63, 59, 88, 88],
                 fill: true,
                 backgroundColor: 'rgba(37, 99, 235, 0.2)',
                 borderColor: 'rgb(37, 99, 235)',
@@ -60,7 +60,7 @@
                 borderWidth: 2
             }, {
                 label: 'Fleet Average',
-                data: [75, 72, 70, 68, 65, 70, 73, 72],
+                data: [75, 75, 75, 75, 75, 75, 75, 75],
                 fill: true,
                 backgroundColor: 'rgba(100, 116, 139, 0.1)',
                 borderColor: 'rgb(100, 116, 139)',
@@ -110,41 +110,6 @@
     });
 
     // Print report functionality
-    function printReport() { window.print(); }
-
-    // Add print button if needed (guarded)
-    const addPrintButton = () => {
-        const reportHeader = document.querySelector('.report-header .container');
-        if (reportHeader) {
-            const printBtn = document.createElement('button');
-            printBtn.className = 'btn btn-secondary';
-            printBtn.textContent = '🖨️ Print Report';
-            printBtn.style.position = 'absolute';
-            printBtn.style.top = '20px';
-            printBtn.style.right = '20px';
-            printBtn.onclick = printReport;
-            reportHeader.style.position = 'relative';
-            reportHeader.appendChild(printBtn);
-        }
-    };
 
     // Initialize on page load (fade-in, print button)
-    document.addEventListener('DOMContentLoaded', () => {
-        addPrintButton();
-        const sections = document.querySelectorAll('section');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1 });
-        sections.forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(20px)';
-            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(section);
-        });
-    });
 })();

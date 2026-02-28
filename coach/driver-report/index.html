@@ -13,13 +13,26 @@
         /* Mobile-friendly tweaks for report pages */
         @media (max-width: 991px) {
             .container { padding-left: 12px; padding-right: 12px; }
-            .report-header .driver-info-card { display: block; }
+            .report-header .driver-info-card {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
             .spider-chart-wrapper, .spider-container { width: 100%; }
             [id^="map_event_"] { height: 180px !important; }
+            .events-summary { flex-wrap: wrap; gap: 12px; }
+            .events-summary .event-stat { flex: 1 1 45%; min-width: 140px; }
+            .events-timeline { padding: 0 4px; }
         }
         @media (max-width: 576px) {
             [id^="map_event_"] { height: 150px !important; }
-            .driver-info-card { grid-template-columns: 1fr; }
+            .events-section { padding: 32px 0; }
+            .events-summary { justify-content: flex-start; }
+            .events-summary .event-stat { flex: 1 1 100%; }
+            .event-card { padding: 12px; }
+            .event-header { flex-direction: column; align-items: flex-start; gap: 6px; }
+            .event-details h4 { font-size: 1.1rem; }
         }
     </style>
 </head>
@@ -88,15 +101,15 @@
                             <span class="dimension-name">Traffic Navigation</span>
                             <span class="dimension-score">82/100</span>
                         </div>
-                        <div class="dimension-item moderate">
+                        <div class="dimension-item good">
                             <span class="dimension-dot"></span>
                             <span class="dimension-name">Weather Adaptation</span>
                             <span class="dimension-score">77/100</span>
                         </div>
-                        <div class="dimension-item moderate">
+                        <div class="dimension-item poor">
                             <span class="dimension-dot"></span>
                             <span class="dimension-name">Night Driving</span>
-                            <span class="dimension-score">73/100</span>
+                            <span class="dimension-score">62/100</span>
                         </div>
                         <div class="dimension-item poor">
                             <span class="dimension-dot"></span>

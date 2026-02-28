@@ -333,6 +333,106 @@
     color: var(--text-dark);
 }
 
+/* Responsive layout fixes */
+@media (max-width: 991px) {
+    .driver-info-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .driver-stats-quick {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .spider-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+
+    .spider-chart-wrapper {
+        width: 100%;
+    }
+
+    .events-summary {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .event-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .recommendations-grid,
+    .trends-grid,
+    .trip-details-cards,
+    .insight-cards,
+    .recommendation-list,
+    .resource-list,
+    .feedback-section .container > .feedback-card {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .trip-summary-card {
+        overflow-x: auto;
+    }
+
+    .trip-summary-table {
+        min-width: 560px;
+    }
+}
+
+@media (max-width: 576px) {
+    .report-header { padding: 80px 0 40px; }
+    .report-title-section h1 { font-size: 2rem; }
+    .driver-info-card { padding: 1.25rem; }
+    .score-circle { width: 100px; height: 100px; }
+    .score-value { font-size: 2rem; }
+    .spider-container { padding: 1.25rem; }
+    .events-section,
+    .recommendations-section,
+    .trends-section,
+    .trip-section,
+    .insights-section,
+    .feedback-section,
+    .resources-section {
+        padding: 40px 0;
+    }
+    .event-card { padding: 1rem; }
+    .event-details h4 { font-size: 1.15rem; }
+    .stat-badge { font-size: 0.85rem; }
+    .driver-info-card {
+        align-items: center;
+        text-align: center;
+    }
+    .driver-details {
+        text-align: center;
+    }
+    .driver-stats-quick {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+    .driver-stats-quick .stat-badge {
+        width: 100%;
+        max-width: 220px;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .risk-score-badge {
+        text-align: center;
+    }
+}
+
 .event-card {
     background: var(--white);
     border-left: 4px solid;
