@@ -110,6 +110,21 @@
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.18);
             z-index: 1000;
+            max-width: calc(100vw - 24px);
+            max-height: none;
+            overflow: visible;
+        }
+        #legend small {
+            display: block;
+            max-width: 220px;
+            line-height: 1.2;
+        }
+        #legend .legend-scale {
+            height: 120px;
+            width: 16px;
+        }
+        #legend .legend-labels {
+            height: 120px;
         }
         #legend h4 {
             margin: 0 0 6px 0;
@@ -148,10 +163,14 @@
                 left: 8px;
                 bottom: 8px;
                 padding: 6px;
+                max-width: calc(100vw - 16px);
             }
             #legend h4 {
                 font-size: 11px;
             }
+            #legend small { max-width: 180px; }
+            #legend .legend-scale { height: 96px; width: 14px; }
+            #legend .legend-labels { height: 96px; }
             .btn-update {
                 padding: 6px;
             }
@@ -164,6 +183,13 @@
             #control-panel { width: 220px; max-height: 42vh; }
             #legend { left: 8px; bottom: 8px; }
             img { max-width: 100%; height: auto !important; }
+        }
+        @media (max-width: 576px) {
+            #legend { padding: 8px; font-size: 10px; top: 8px; bottom: auto; left: 6px; display: inline-block; min-height: 150px; }
+            #legend h4 { font-size: 11px; margin-bottom: 4px; }
+            #legend .legend-scale { height: 110px; width: 12px; }
+            #legend .legend-labels { height: 110px; font-size: 8px; }
+            #legend small { max-width: 150px; font-size: 9px; }
         }
     </style>
 </head>
@@ -224,29 +250,20 @@
         <h4 id="legend-title">Risk Gradient</h4>
         <small style="color: #666;" id="legend-subtitle">Rate: crashes per MVKT</small>
         <div style="margin: 6px 0; display: flex; align-items: center;">
-            <div style="background: linear-gradient(to bottom, 
+            <div class="legend-scale" style="background: linear-gradient(to bottom, 
                 #d7191c 0%,
                 #ffff66 33%,
                 #00cc66 66%,
                 #2c7bb6 100%);
-                height: 120px;
-                width: 16px;
                 border: 1px solid #ccc;
                 border-radius: 3px;
                 display: inline-block;
             "></div>
-            <div style="display: inline-flex; flex-direction: column; justify-content: space-between; height: 120px; margin-left: 6px; font-size: 10px;">
+            <div class="legend-labels" style="display: inline-flex; flex-direction: column; justify-content: space-between; height: 120px; margin-left: 6px; font-size: 10px;">
                 <div><b id="legend-90">-</b><br>High</div>
                 <div><b id="legend-10">-</b><br>Low</div>
             </div>
         </div>
-        <small style="color: #666;">
-            Blue = Lowest<br>
-            Red = Highest<br>
-            <br>
-            <i>Colors update dynamically<br>
-            when you change day/hour</i>
-        </small>
     </div>
     </div>
     
@@ -504,7 +521,7 @@
                 ? 'Crash Density'
                 : 'Absolute Risk';
             document.getElementById('legend-subtitle').textContent = mapMode === 'crash_density'
-                ? 'Expected crashes per hour per km'
+                ? 'Crashes per Km'
                 : 'Rate: crashes per MVKT';
             const scaleMax = globalPercentiles['90'] * 1.75;
             document.getElementById('legend-90').textContent = `${scaleMax.toFixed(4)}`;
