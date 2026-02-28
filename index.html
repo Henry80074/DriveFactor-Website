@@ -233,19 +233,22 @@
             .navbar-custom { padding: 12px 0; }
             .navbar-custom .navbar-brand { font-size: 1rem; }
             .navbar-custom .nav-link { padding: 8px 10px; font-size: 0.95rem; }
-            .headline { font-size: 1.6rem; line-height: 1.25; }
-            .hero-badge { font-size: 1rem; padding: 6px 10px; }
-            .sub-headline { font-size: 0.98rem; margin-bottom: 16px; max-width: 100%; }
+            /* Larger, more readable titles on narrow tablets / large phones */
+            .headline { font-size: 1.9rem; line-height: 1.18; margin-bottom: 14px; }
+            .sub-headline { font-size: 1.05rem; margin-bottom: 18px; }
+            .hero-badge { font-size: 1.05rem; padding: 8px 12px; }
             .metric-card, .tech-card, .stat-tile { padding: 12px; }
-            .map-frame { height: 260px; }
+            .map-frame { height: 280px; }
             .metric-value { font-size: 1.4rem; }
         }
 
         @media (max-width: 576px) {
-            .headline { font-size: 1.35rem; }
-            .hero-badge { font-size: 0.95rem; }
-            .navbar-custom .nav-link { font-size: 0.92rem; }
-            .map-frame { height: 220px; }
+            /* Mobile: increase title and subhead size and add breathing room */
+            .headline { font-size: 1.6rem; line-height: 1.15; margin-bottom: 10px; }
+            .sub-headline { font-size: 1rem; margin-bottom: 14px; }
+            .hero-badge { font-size: 1rem; padding: 6px 10px; }
+            /* Give maps a bit more vertical space on phones */
+            .map-frame { height: 280px; }
             .section { padding: 20px 0; }
         }
 
@@ -408,7 +411,7 @@
         <div class="row g-4">
             <div class="col-md-5">
                 <h5 style="color: white; font-weight: 700;">DriveFactor</h5>
-                <p class="mb-0">Predictive crash risk intelligence for mobility leaders.</p>
+                <p class="mb-0">Predictive road risk intelligence for mobility leaders.</p>
             </div>
             <div class="col-md-3">
                 <h6 style="color: white; font-weight: 600;">Platform</h6>

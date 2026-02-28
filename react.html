@@ -254,17 +254,24 @@
         /* Mobile readability fixes added */
         @media (max-width: 991px) {
             .section { padding: 28px 0 !important; }
-            .headline { font-size: 1.6rem !important; line-height: 1.25; }
-            .hero-badge { font-size: 1rem !important; padding: 6px 10px; }
-            img, iframe, .map-panel, .map-frame { max-width: 100%; height: auto !important; }
+            /* Larger, more readable titles on narrow tablets / large phones */
+            .headline { font-size: 1.9rem !important; line-height: 1.18; margin-bottom: 14px; }
+            .sub-headline { font-size: 1.05rem !important; margin-bottom: 18px; }
+            .hero-badge { font-size: 1.05rem !important; padding: 8px 12px; }
+            /* Avoid collapsing map containers: only make images auto-sized */
+            img { max-width: 100%; height: auto !important; }
             .metric-card, .mini-chart { padding: 12px !important; border-radius: 12px; }
             .navbar-custom { padding: 12px 0 !important; }
             .navbar-custom .nav-link { padding: 8px 10px; font-size: 0.95rem; }
         }
 
         @media (max-width: 576px) {
-            .headline { font-size: 1.25rem !important; }
-            .map-panel, .map-frame { height: 220px !important; }
+            /* Mobile: increase title and subhead size and add breathing room */
+            .headline { font-size: 1.6rem !important; line-height: 1.15; margin-bottom: 10px; }
+            .sub-headline { font-size: 1rem !important; margin-bottom: 14px; }
+            .hero-badge { font-size: 1rem !important; padding: 6px 10px; }
+            /* Give maps a bit more vertical space on phones */
+            .map-panel, .map-frame { height: 280px !important; }
             .section { padding: 18px 0 !important; }
         }
 
@@ -452,7 +459,7 @@
         <div class="row g-4">
             <div class="col-md-5">
                 <h5 style="color: white; font-weight: 700;">DriveFactor</h5>
-                <p class="mb-0">Predictive crash risk intelligence for mobility leaders.</p>
+                <p class="mb-0">Predictive road risk intelligence for mobility leaders.</p>
             </div>
             <div class="col-md-3">
                 <h6 style="color: white; font-weight: 600;">Navigate</h6>

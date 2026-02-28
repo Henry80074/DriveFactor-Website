@@ -8,17 +8,23 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <style>
+        html, body { height: 100%; }
         body {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
+            height: 100%;
         }
         #map {
             position: absolute;
             top: 0;
+            right: 0;
             bottom: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
         }
+        .leaflet-container { height: 100% !important; }
         #control-panel {
             position: fixed;
             top: 16px;
@@ -157,7 +163,7 @@
         @media (max-width: 991px) {
             #control-panel { width: 220px; max-height: 42vh; }
             #legend { left: 8px; bottom: 8px; }
-            img, iframe { max-width: 100%; height: auto !important; }
+            img { max-width: 100%; height: auto !important; }
         }
     </style>
 </head>
@@ -580,6 +586,62 @@
     // Initialize
     updateDayDisplay();
     initializeLayer();
+    </script>
+    <!-- Mobile controls toggle for small screens -->
+    <style>
+        #panel-toggle-crash {
+            display: none;
+            position: fixed;
+            right: 12px;
+            bottom: 12px;
+            z-index: 1101;
+            background: #2563eb;
+            color: #fff;
+            border: none;
+            padding: 10px 12px;
+            border-radius: 999px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+            font-weight: 700;
+        }
+
+        @media (max-width: 576px) {
+            #panel-toggle-crash { display: block; }
+            #control-panel {
+                left: 50% !important;
+                right: auto !important;
+                top: auto !important;
+                bottom: 6px !important;
+                width: 94vw !important;
+                transform: translate(-50%, 120%);
+                transition: transform 0.28s ease;
+                border-radius: 12px 12px 0 0 !important;
+            }
+            #control-panel.open { transform: translate(-50%, 0%); }
+            #legend { left: 8px !important; bottom: 120px !important; }
+            .leaflet-control-scale { bottom: 160px !important; left: 8px !important; }
+        }
+    </style>
+
+    <button id="panel-toggle-crash" aria-controls="control-panel" aria-expanded="false">Controls</button>
+    <script>
+        (function(){
+            var btn = document.getElementById('panel-toggle-crash');
+            var panel = document.getElementById('control-panel');
+            if (!btn || !panel) return;
+            btn.addEventListener('click', function(){
+                var open = panel.classList.toggle('open');
+                btn.setAttribute('aria-expanded', open);
+                btn.textContent = open ? 'Close' : 'Controls';
+            });
+        })();
+    </script>
+    <script>
+        // Listen for parent requests to invalidate the map size
+        window.addEventListener('message', function(e){
+            if (e && e.data === 'invalidate') {
+                setTimeout(function(){ if (typeof map !== 'undefined' && map && map.invalidateSize) { map.invalidateSize(); } }, 80);
+            }
+        }, false);
     </script>
 </body>
 </html>

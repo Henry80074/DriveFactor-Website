@@ -254,51 +254,49 @@
         /* Mobile readability fixes added */
         @media (max-width: 991px) {
             .section { padding: 28px 0 !important; }
-            .headline { font-size: 1.6rem !important; line-height: 1.25; }
-            .hero-badge { font-size: 1rem !important; padding: 6px 10px; }
-            img, iframe, .map-panel, .map-frame, .map-container { max-width: 100%; height: auto !important; }
-            .metric-card, .mini-chart, .stat-tile { padding: 12px !important; border-radius: 12px; }
+            /* Larger, more readable titles on narrow tablets / large phones */
+            .headline { font-size: 1.9rem !important; line-height: 1.18; margin-bottom: 14px; }
+            .sub-headline { font-size: 1.05rem !important; margin-bottom: 18px; }
+            .hero-badge { font-size: 1.05rem !important; padding: 8px 12px; }
+            /* Avoid collapsing map containers: only make images auto-sized */
+            img { max-width: 100%; height: auto !important; }
+            .metric-card, .mini-chart { padding: 12px !important; border-radius: 12px; }
             .navbar-custom { padding: 12px 0 !important; }
-            .navbar-custom .navbar-brand { font-size: 1rem; }
             .navbar-custom .nav-link { padding: 8px 10px; font-size: 0.95rem; }
-            .map-panel, .map-frame { height: 260px !important; }
         }
 
         @media (max-width: 576px) {
-            .headline { font-size: 1.25rem !important; }
-            .map-panel, .map-frame { height: 220px !important; }
+            /* Mobile: increase title and subhead size and add breathing room */
+            .headline { font-size: 1.6rem !important; line-height: 1.15; margin-bottom: 10px; }
+            .sub-headline { font-size: 1rem !important; margin-bottom: 14px; }
+            .hero-badge { font-size: 1rem !important; padding: 6px 10px; }
+            /* Give maps a bit more vertical space on phones */
+            .map-panel, .map-frame { height: 280px !important; }
             .section { padding: 18px 0 !important; }
-            .hero-badge { font-size: 0.95rem !important; }
-            .navbar-custom .nav-link { font-size: 0.92rem !important; }
-            .stat-tile { padding: 12px !important; }
-            [id^="map_event_"] { height: 160px !important; }
         }
 
-        /* Ensure the dark navbar shows a visible toggler icon on small screens */
         .navbar-custom .navbar-toggler { border: none !important; }
-        .navbar-custom .navbar-toggler-icon {
-            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(226,232,240,0.95)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-        }
+        .navbar-custom .navbar-toggler-icon { background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(226,232,240,0.95)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"); }
     </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
     <div class="container">
-        <a class="navbar-brand" href="/">DriveFactor</a>
+        <a class="navbar-brand" href="index.html">DriveFactor</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navMenu">
             <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
-                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="/predict/">Predict</a></li>
-                <li class="nav-item"><a class="nav-link active" href="/react/">React</a></li>
-                <li class="nav-item"><a class="nav-link" href="/coach/">Coach</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="Predict.html">Predict</a></li>
+                <li class="nav-item"><a class="nav-link active" href="React.html">React</a></li>
+                <li class="nav-item"><a class="nav-link" href="Coach.html">Coach</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
             </ul>
         </div>
     </div>
-    </nav>
+</nav>
 
 
 <section class="section section-dark" id="hero">
@@ -357,6 +355,7 @@
     </div>
 </section>
 
+
 <section class="section" id="prediction-by-analogues">
     <div class="container">
         <div class="row g-4">
@@ -412,7 +411,7 @@
             <div class="col-12">
                 <div class="metric-card">
                     <h4 style="color: var(--primary); font-weight: 700;">Stage 3 — Expected change (per-year)</h4>
-        
+
                     <div class="row g-3 align-items-start">
                         <div class="col-lg-5">
                             <p class="mb-2" style="color: var(--text-muted);">Derived from 12 matched treated corridors.</p>
@@ -425,18 +424,20 @@
                         <div class="col-lg-7">
                             <div class="mini-chart"> 
                                 <svg width="100%" height="140" viewBox="0 0 420 140" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="0" y="0" width="420" height="140" fill="transparent" />
-                                    <line x1="40" y1="120" x2="390" y2="120" stroke="#334155" stroke-width="2" />
-                                    <line x1="40" y1="20" x2="40" y2="120" stroke="#334155" stroke-width="2" />
-                                    <line x1="230" y1="20" x2="230" y2="130" stroke="#64748b" stroke-dasharray="4 6" />
-                                    <polyline points="40,95 140,88 230,82 340,70" fill="none" stroke="#60a5fa" stroke-width="3" />
-                                    <polyline points="40,95 140,88 230,82 340,90" fill="none" stroke="#f97316" stroke-width="3" />
-                                    <line x1="350" y1="70" x2="350" y2="90" stroke="#facc15" stroke-width="2" />
-                                    <polyline points="346,72 350,68 354,72" fill="none" stroke="#facc15" stroke-width="2" />
-                                    <polyline points="346,88 350,92 354,88" fill="none" stroke="#facc15" stroke-width="2" />
+                                    <rect x="0" y="0" width="420" height="140" fill="#ffffff" />
+                                    <line x1="60" y1="110" x2="360" y2="110" stroke="#e2e8f0" stroke-width="2" />
+                                    <line x1="60" y1="20" x2="60" y2="110" stroke="#e2e8f0" stroke-width="2" />
+                                    <rect x="120" y="40" width="80" height="70" fill="#60a5fa" rx="6" />
+                                    <rect x="240" y="60" width="80" height="50" fill="#f97316" rx="6" />
+                                    <text x="120" y="125" font-size="10" fill="#64748b">Without intervention</text>
+                                    <text x="240" y="125" font-size="10" fill="#64748b">With intervention</text>
+                                    <text x="45" y="20" font-size="10" fill="#64748b">Predicted crashes</text>
+                                    <text x="140" y="35" font-size="10" fill="#1d4ed8">Baseline</text>
+                                    <text x="260" y="55" font-size="10" fill="#9a3412">After</text>
                                 </svg>
+                                <p class="mb-0" style="color: var(--text-muted); font-size: 0.85rem;">Bars compare predicted crash frequency with and without treatment.</p>
                             </div>
-                        </div>
+                        </div> 
                     </div>
                 </div>
             </div>
@@ -458,13 +459,12 @@
         <div class="row g-4">
             <div class="col-md-5">
                 <h5 style="color: white; font-weight: 700;">DriveFactor</h5>
-                <p class="mb-0">Predictive crash risk intelligence for mobility leaders.</p>
+                <p class="mb-0">Predictive road risk intelligence for mobility leaders.</p>
             </div>
             <div class="col-md-3">
                 <h6 style="color: white; font-weight: 600;">Navigate</h6>
-                <p class="mb-1"><a href="/">Home</a></p>
-                <p class="mb-1"><a href="#impact">Impact</a></p>
-                <p class="mb-0"><a href="#insights">Insights</a></p>
+                <p class="mb-1"><a href="index.html">Home</a></p>
+                <p class="mb-0"><a href="#impact">Impact</a></p>
             </div>
             <div class="col-md-4">
                 <h6 style="color: white; font-weight: 600;">Contact</h6>

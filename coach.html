@@ -74,15 +74,20 @@
     /* Mobile readability fixes added */
     @media (max-width: 991px) {
         .section { padding: 28px 0 !important; }
-        .headline { font-size: 1.6rem !important; line-height: 1.25; }
-        .hero-badge { font-size: 1rem !important; padding: 6px 10px; }
-        img, iframe { max-width: 100%; height: auto !important; }
+        /* Larger, more readable titles on narrow tablets / large phones */
+        .headline { font-size: 1.9rem !important; line-height: 1.18; margin-bottom: 14px; }
+        .sub-headline { font-size: 1.05rem !important; margin-bottom: 18px; }
+        .hero-badge { font-size: 1.05rem !important; padding: 8px 12px; }
+        img { max-width: 100%; height: auto !important; }
         .metric-card, .stat-tile { padding: 12px !important; border-radius: 12px; }
         .navbar-custom { padding: 12px 0 !important; }
     }
 
     @media (max-width: 576px) {
-        .headline { font-size: 1.25rem !important; }
+        /* Mobile: increase title and subhead size and add breathing room */
+        .headline { font-size: 1.6rem !important; line-height: 1.15; margin-bottom: 10px; }
+        .sub-headline { font-size: 1rem !important; margin-bottom: 14px; }
+        .hero-badge { font-size: 1rem !important; padding: 6px 10px; }
         .section { padding: 18px 0 !important; }
     }
 
@@ -128,8 +133,8 @@
         <div class="row g-4">
             <div class="col-12">
                 <h2 class="headline">Create safer drivers using the power of contextual insights</h2>
-                <p class="sub-headline">Typical telematics data has a problem. It lacks the context required to provide meaningful insights and personalised training. Coach turns noisy telematics data into trusted, contextual intelligence by enriching every event with road geometry, time‑of‑day and weather conditions</p>
-                <ol class="feature-list feature-list-numbered" style="margin-bottom: 0;">
+                <p class="sub-headline">Typical telematics data has a problem. It lacks the context required to provide meaningful insights and personalised training. Coach turns noisy telematics data into trusted, contextual intelligence by enriching every event with road geometry, time‑of‑day and weather conditions.</p>
+                <ol class="feature-list feature-list-numbered" style="margin-top: 20px;">
                     <li><strong>Accurate performance analysis:</strong> Consistent scoring for speed, braking, junction handling, night driving and weather sensitivity.</li>
                     <li><strong>Targeted coaching:</strong> Evidence‑linked recommendations that show drivers exactly what to improve and why.</li>
                     <li><strong>Contextual intelligence:</strong> Enriched event data that provides the context needed for fair, evidence‑backed scores that explain behaviour, prioritise risk and support driver coaching.</li>
@@ -165,7 +170,7 @@
 
 <section class="section" id="report">
     <div class="container">
-        <div class="metric-card" style="margin-bottom: 16px;">
+        <div class="metric-card" style="margin-bottom: 5px;">
             <h4 style="color: var(--primary); font-weight: 700;">Sample driver performance report</h4>
             <a class="btn btn-primary" href="driver-report.html" target="_blank" rel="noopener">View sample report</a>
         </div>
@@ -188,7 +193,7 @@
         <div class="row g-4">
             <div class="col-md-5">
                 <h5 style="color: white; font-weight: 700;">DriveFactor</h5>
-                <p class="mb-0">Predictive crash risk intelligence for mobility leaders.</p>
+                <p class="mb-0">Predictive road risk intelligence for mobility leaders.</p>
             </div>
             <div class="col-md-3">
                 <h6 style="color: white; font-weight: 600;">Navigate</h6>
