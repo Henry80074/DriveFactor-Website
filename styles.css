@@ -12,14 +12,6 @@
 html, body { height: 100%; margin: 0; padding: 0; font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background: var(--light-bg); color: var(--text-dark); }
 
 /* Let bootstrap container classes handle width natively for wider views */
-.container {
-    width: 100%;
-    max-width: 1000px;
-    margin-right: auto;
-    margin-left: auto;
-    padding-right: 15px;
-    padding-left: 15px;
-}
 
 .navbar { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
 .navbar .logo { font-weight: 800; color: var(--text-dark); }
