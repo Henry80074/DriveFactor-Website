@@ -26,14 +26,14 @@
                 <div class="nav-dropdown-icon" style="background:#fff3e0;">🗺️</div>
                 <div class="nav-dropdown-text">
                   <strong>Spatial Risk Maps</strong>
-                  <span>Per-segment crash probability from road geometry and history</span>
+                  <span>Predicted per-segment crash probability from road geometry and history</span>
                 </div>
               </a>
               <a href="products/traffic-risk/index.html">
                 <div class="nav-dropdown-icon" style="background:#e8f5e9;">📡</div>
                 <div class="nav-dropdown-text">
-                  <strong>Dynamic Traffic Risk</strong>
-                  <span>Live and Aimsun-modelled traffic speed risk scoring (L3)</span>
+                  <strong>Dynamic Risk</strong>
+                  <span>Modelled road risk considering time of day and environmental conditions</span>
                 </div>
               </a>
               <a href="products/sun-glare/index.html">
@@ -46,8 +46,8 @@
               <a href="products/rain-dark/index.html">
                 <div class="nav-dropdown-icon" style="background:#e3f2fd;">🌧️</div>
                 <div class="nav-dropdown-text">
-                  <strong>Rain &amp; Low Light Risk</strong>
-                  <span>Combined precipitation and darkness multiplier maps</span>
+                  <strong>Absolute Road Risk</strong>
+                  <span>Estimated road risk per million vehicle kilometers travelled for identifying truely dangerous roads</span>
                 </div>
               </a>
               <div class="dropdown-divider"></div>
@@ -61,8 +61,8 @@
               <a href="products/live-alerts/index.html">
                 <div class="nav-dropdown-icon" style="background:#fce4ec;">🔔</div>
                 <div class="nav-dropdown-text">
-                  <strong>Live Risk Alerts</strong>
-                  <span>15-minute PM peak risk scoring from WebTRIS loop sensors</span>
+                  <strong>Road Safety Intervention Planner</strong>
+                  <span>Predict the impact of a road safety intervention using similar treated corridors</span>
                 </div>
               </a>
             </div>
@@ -102,20 +102,20 @@
   <div class="container">
     <div class="stats-grid">
       <div class="stat-cell">
-        <div class="stat-number">0.76</div>
-        <div class="stat-label">AUC — live crash risk model (L3)</div>
+        <div class="stat-number">1 Million +</div>
+        <div class="stat-label">Stats19 crashes analysed across the national dataset</div>
       </div>
       <div class="stat-cell">
-        <div class="stat-number">814k</div>
-        <div class="stat-label">Sensor intervals used in model training</div>
+        <div class="stat-number">High-resolution</div>
+        <div class="stat-label">Risk scored per segment — not by district, ward or zone</div>
       </div>
       <div class="stat-cell">
-        <div class="stat-number">11×</div>
-        <div class="stat-label">Peak odds ratio at −1 IQR speed deviation</div>
+        <div class="stat-number">Static + Dynamic</div>
+        <div class="stat-label">Baseline spatial risk combined with dynamic risk scoring</div>
       </div>
       <div class="stat-cell">
-        <div class="stat-number">560k</div>
-        <div class="stat-label">Stats19 crashes (2013–2023) in temporal model</div>
+        <div class="stat-number">Evidence-led</div>
+        <div class="stat-label">Every model grounded in peer-reviewed road safety research</div>
       </div>
     </div>
   </div>
@@ -150,7 +150,7 @@
         <div class="product-card-body">
           <div class="product-card-tag" style="color:#166534;">Layer 3 · Live traffic</div>
           <h3>Dynamic Traffic Risk Maps</h3>
-          <p>Real-time and modelled traffic risk scoring using speed deviation from per-link baselines. Validated on Tees Valley A-road network.</p>
+          <p>Adjust speed, weather and time to see modelled risk response across the network. See how crash density changes across your road network.</p>
           <span class="product-card-link">View product →</span>
         </div>
       </a>
@@ -161,8 +161,8 @@
         </div>
         <div class="product-card-body">
           <div class="product-card-tag" style="color:#92400e;">Environmental</div>
-          <h3>Sun Glare Intensity Maps</h3>
-          <p>Solar azimuth mapped against road bearing to identify glare-exposure windows. Risk uplift of 2–4× identified at severe glare alignments.</p>
+          <h3>Sun Glare Intensity</h3>
+          <p>Solar position modelled against road geometry to identify glare-exposure windows. Shows key glare hotspots for targeted interventions.</p>
           <span class="product-card-link">View product →</span>
         </div>
       </a>
@@ -173,8 +173,8 @@
         </div>
         <div class="product-card-body">
           <div class="product-card-tag" style="color:#1e40af;">Environmental</div>
-          <h3>Rain &amp; Low Light Risk</h3>
-          <p>Combined precipitation and darkness risk layer. Shows where routes are most exposed to combined adverse conditions by time of day and season.</p>
+          <h3>Absolute Road Risk</h3>
+          <p>Calculates estimated collision density per vehicle kilometer travelled. Shows where roads are truely dangerous.</p>
           <span class="product-card-link">View product →</span>
         </div>
       </a>
@@ -185,8 +185,8 @@
         </div>
         <div class="product-card-body">
           <div class="product-card-tag" style="color:#7e22ce;">Analysis tool</div>
-          <h3>What-If Scenario Planner</h3>
-          <p>Adjust speed, weather, time and road conditions to see modelled risk response across the network. No simulation — instant dose-response lookup.</p>
+          <h3>Traffic Scenario Planner</h3>
+          <p>Real-time and modelled traffic risk scoring using traffic flow deviations from norms. Helps identify when traffic flow changes are increasing or decreasing risks.</p>
           <span class="product-card-link">View product →</span>
         </div>
       </a>
@@ -198,7 +198,7 @@
         <div class="product-card-body">
           <div class="product-card-tag" style="color:#166534;">Analysis tool</div>
           <h3>Road Safety Intervention Planner</h3>
-          <p>Click any 30 mph road to see the modelled crash reduction from a 30→20 mph change. Predictions from a causal forest trained on UK-wide staggered DiD, with Wales k-NN fallback.</p>
+          <p>Measures and predicts the impact of road safety intervention using similar treated corridors. Provides insight into potential safety improvements and their expected outcomes.</p>
           <span class="product-card-link">View product →</span>
         </div>
       </a>
@@ -212,48 +212,41 @@
   <div class="container">
     <div class="section-header">
       <div class="section-label">Methodology</div>
-      <h2>A three-layer risk architecture</h2>
-      <p>Each layer addresses a different time horizon of crash risk. They multiply together to produce a combined score.</p>
+      <h2>A multi-layer risk architecture</h2>
+      <p>Risk on any road is shaped by many interacting factors. DriveFactor brings all of them together, combining crash history, physical road characteristics, environmental conditions and traffic behaviour into a single risk score for every segment, at every hour of the day.</p>
     </div>
 
     <div class="layer-list">
       <div class="layer-item">
         <div class="layer-num" style="background:#fff3e0; color:#b45309;">L1</div>
         <div class="layer-content">
-          <h4>Spatial baseline — road geometry and crash history</h4>
-          <p>XGBoost model trained on OpenStreetMap geometry features and historic Stats19 crash rates per road segment. Produces a static per-segment baseline risk score capturing where crashes cluster structurally.</p>
+          <h4>Road environment &amp; crash history</h4>
+          <p>Structural risk grounded in road geometry, junction type, speed limit, carriageway layout and over a decade of Stats19 recorded collision data, scored to individual road segments, not zones or wards.</p>
         </div>
         <div class="layer-meta">
-          <div class="metric">XGBoost</div>
-          <div class="metric-label">OSM + Stats19</div>
+          <div class="metric-label">Road geometry · Stats19 · OSM</div>
         </div>
       </div>
       <div class="layer-item">
         <div class="layer-num" style="background:#e8f5e9; color:#166534;">L2</div>
         <div class="layer-content">
-          <h4>Temporal &amp; weather — when and under what conditions</h4>
-          <p>Penalised Poisson GAM trained on 560,000 Stats19 crashes (2013–2023), AADF-weighted. Models crash rate as a function of hour, day type, month, precipitation and wind gust. Typical multiplier range 0.4–4.0×.</p>
+          <h4>Temporal &amp; environmental conditions</h4>
+          <p>Risk varies significantly by time of day, day of week, season and weather. Fatigue-related patterns, darkness, precipitation, wind and other conditions known to influence crash likelihood are all considered.</p>
         </div>
         <div class="layer-meta">
-          <div class="metric">0.4–4.0×</div>
-          <div class="metric-label">Multiplier range</div>
+          <div class="metric-label">Hour · Season · Weather · Darkness</div>
         </div>
       </div>
       <div class="layer-item">
         <div class="layer-num" style="background:#e8f1f9; color:#005fa3;">L3</div>
         <div class="layer-content">
-          <h4>Live traffic — speed deviation from per-link baselines</h4>
-          <p>Varying-coefficient cyclic cubic spline GAM trained on 814,700 WebTRIS sensor intervals. Converts within-stratum speed z-score to crash odds ratio. AUC 0.762 on held-out intervals. Up to 11× OR at −1 IQR speed deviation.</p>
+          <h4>Traffic volume &amp; speed behaviour</h4>
+          <p>Measured and modelled traffic conditions, including flow estimates, speeds and driving behaviour, converting static risk into a dynamic, actionable score.</p>
         </div>
         <div class="layer-meta">
-          <div class="metric">AUC 0.762</div>
-          <div class="metric-label">814k intervals</div>
+          <div class="metric-label">Traffic Volume · Speed · Flow estimates</div>
         </div>
       </div>
-    </div>
-
-    <div class="formula-block">
-      combined_risk = L1_spatial × L2_temporal_weather × L3_live_traffic
     </div>
   </div>
 </section>
@@ -267,17 +260,17 @@
     </div>
     <div class="use-case-grid">
       <div class="use-case-card">
-        <div class="use-case-icon">🏛️</div>
+        <div class="use-case-icon"></div>
         <h4>Local Authorities</h4>
         <p>Prioritise safety investment using evidence-based spatial risk maps. Quantify the risk impact of congestion or adverse conditions on your network before interventions are committed.</p>
       </div>
       <div class="use-case-card">
-        <div class="use-case-icon">🚛</div>
+        <div class="use-case-icon"></div>
         <h4>Fleet Operators</h4>
         <p>Route and schedule planning informed by dynamic risk scores. Identify when and where your vehicles are exposed to elevated risk, and model the effect of timing or route changes.</p>
       </div>
       <div class="use-case-card">
-        <div class="use-case-icon">📋</div>
+        <div class="use-case-icon"></div>
         <h4>Road Safety Audits</h4>
         <p>Supplement site-visit observations with quantitative risk data. Sun glare maps and crash density layers provide objective context for safety audit recommendations.</p>
       </div>
