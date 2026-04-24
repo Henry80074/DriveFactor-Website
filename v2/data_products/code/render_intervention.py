@@ -18,6 +18,7 @@ import os
 import sys
 import warnings
 warnings.filterwarnings('ignore')
+from collections import defaultdict
 from pathlib import Path
 
 import numpy as np
@@ -307,53 +308,155 @@ def predict_impact(segments_df, rf_model=None, scaler=None, rf_feat_cols=None):
     return result
 
 
+# ── Corridor grouping ─────────────────────────────────────────────────────────
+
+def _snap(coord, precision=4):
+    """Snap a (lat, lon) pair to a grid to merge near-identical endpoints."""
+    return (round(coord[0], precision), round(coord[1], precision))
+
+
+def build_corridors(merged: pd.DataFrame) -> pd.DataFrame:
+    """Group segments into corridors using name + topology.
+
+    Rules:
+      1. Named segments are grouped only when they share BOTH the same
+         normalised name AND a snapped endpoint — so 'Norton Road' in the
+         north and a disconnected 'Norton Road' elsewhere stay separate.
+      2. Unnamed / junction segments are kept as their own single-segment
+         corridor — they never drag named roads together.
+    """
+    df = merged.copy().reset_index(drop=True)
+
+    def _norm_name(n):
+        n = str(n or "").strip().lower()
+        return n if n and n != "unnamed road" else ""
+
+    df["_nname"] = df["name"].apply(_norm_name)
+
+    # Union-Find over row indices
+    parent = list(range(len(df)))
+
+    def find(x):
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+
+    def union(a, b):
+        a, b = find(a), find(b)
+        if a != b:
+            parent[b] = a
+
+    # Build endpoint → list of (row_index, norm_name) — named only
+    node_to_named: dict = defaultdict(list)
+    for i, row in df.iterrows():
+        nm = row["_nname"]
+        if not nm:
+            continue
+        ll = row.get("latlngs") or []
+        if len(ll) < 2:
+            continue
+        node_to_named[_snap(ll[0])].append((i, nm))
+        node_to_named[_snap(ll[-1])].append((i, nm))
+
+    # Only union segments that share an endpoint AND the same name
+    for segs_at_node in node_to_named.values():
+        by_name: dict = defaultdict(list)
+        for idx, nm in segs_at_node:
+            by_name[nm].append(idx)
+        for same_name_segs in by_name.values():
+            for i in range(1, len(same_name_segs)):
+                union(same_name_segs[0], same_name_segs[i])
+
+    df["_cid"] = [find(i) for i in range(len(df))]
+
+    records = []
+    for cid, grp in df.groupby("_cid"):
+        total_len = grp["length_m"].sum() or 1.0
+        w = grp["length_m"] / total_len
+
+        is_30 = bool(grp["is_30mph"].any())
+
+        rr_vals = grp.loc[grp["is_30mph"], "risk_reduction_pct"]
+        rr_w    = grp.loc[grp["is_30mph"], "length_m"]
+        red_pct = float((rr_vals * (rr_w / rr_w.sum())).sum()) if (is_30 and len(rr_vals)) else float("nan")
+
+        names = [n for n in grp["name"].tolist() if n and n not in ("Unnamed road", "")]
+        name  = max(set(names), key=names.count) if names else "Unnamed road"
+
+        records.append({
+            "corridor_id":        int(cid),
+            "name":               name,
+            "highway":            grp["highway"].mode()[0],
+            "length_m":           round(total_len, 1),
+            "lanes":              int(grp["lanes"].max()),
+            "aadf":               int(grp["aadf"].mean()),
+            "crashes_total":      int(grp["crashes_total"].sum()),
+            "pre_annual":         round(float(grp["pre_annual"].sum()), 3),
+            "post_annual":        round(float(grp["post_annual"].sum()), 3),
+            "pct_change":         round(float((grp["pct_change"].fillna(0) * w).sum()), 1),
+            "risk_reduction_pct": round(red_pct, 1) if not (isinstance(red_pct, float) and math.isnan(red_pct)) else float("nan"),
+            "is_30mph":           is_30,
+            "segment_count":      len(grp),
+            "all_latlngs":        [r["latlngs"] for _, r in grp.iterrows() if r.get("latlngs")],
+        })
+
+    corridors = pd.DataFrame(records)
+
+    # Rank-percentile colour within 30 mph corridors
+    mask = corridors["risk_reduction_pct"].notna() & corridors["is_30mph"]
+    corridors["color_t"] = float("nan")
+    corridors.loc[mask, "color_t"] = corridors.loc[mask, "risk_reduction_pct"].rank(pct=True)
+
+    logger.info("Grouped %d segments → %d corridors (%d with 30 mph prediction)",
+                len(df), len(corridors), int(mask.sum()))
+    return corridors
+
+
 # ── HTML builder ───────────────────────────────────────────────────────────────
 
 def build_html(segs: pd.DataFrame, preds: pd.DataFrame, summary: dict) -> str:
     merged = segs.merge(preds, on="osm_id", how="left")
 
-    # Rank-percentile colour mapping — gives a full spread of red→green
-    # regardless of how compressed the raw % values are.
-    is_30_mask = merged["risk_reduction_pct"].notna()
-    pct_series = merged.loc[is_30_mask, "risk_reduction_pct"]
-    ranks = pct_series.rank(pct="max")   # 0..1 based on actual distribution
-    merged["_color_t"] = float("nan")
-    merged.loc[is_30_mask, "_color_t"] = ranks
+    # is_30mph flag needed by build_corridors
+    merged["is_30mph"] = (
+        merged["maxspeed"].str.startswith("30", na=True) |
+        merged["highway"].isin(["residential","living_street"])
+    )
 
-    # Legend ticks: actual p5 / median / p95 values
+    corridors = build_corridors(merged)
+
+    # Legend percentile ticks from corridor-level data
+    mask = corridors["risk_reduction_pct"].notna() & corridors["is_30mph"]
+    pct_series = corridors.loc[mask, "risk_reduction_pct"]
     _pct_lo  = round(float(pct_series.quantile(0.05)), 1) if len(pct_series) else 0.0
     _pct_mid = round(float(pct_series.quantile(0.50)), 1) if len(pct_series) else 20.0
     _pct_hi  = round(float(pct_series.quantile(0.95)), 1) if len(pct_series) else 40.0
 
-    feats = []
-    for _, row in merged.iterrows():
-        if not row.get("latlngs"):
-            continue
-        is_30 = str(row.get("maxspeed","")).startswith("30") or (
-            row.get("maxspeed") is None and
-            row.get("highway") in ("residential","tertiary","unclassified","living_street")
-        )
-        def _f(v, default=0.0):
-            try: return float(v) if v is not None and not (isinstance(v,float) and math.isnan(v)) else default
-            except: return default
+    def _f(v, default=0.0):
+        try: return float(v) if v is not None and not (isinstance(v, float) and math.isnan(v)) else default
+        except: return default
 
+    feats = []
+    for _, row in corridors.iterrows():
+        all_ll = row.get("all_latlngs") or []
+        if not all_ll:
+            continue
         feats.append({
-            "osm_id":       int(row["osm_id"]),
-            "name":         str(row.get("name","") or ""),
-            "highway":      str(row.get("highway","") or ""),
-            "maxspeed":     str(row.get("maxspeed","") or ""),
-            "lanes":        int(row.get("lanes",1) or 1),
-            "length_m":     round(_f(row.get("length_m")),0),
-            "aadf":         int(row.get("aadf",0) or 0),
-            "crashes_total":int(row.get("crashes_total",0) or 0),
-            "pre_annual":   round(_f(row.get("pre_annual")),3),
-            "post_annual":  round(_f(row.get("post_annual")),3),
-            "pct_change":   round(_f(row.get("pct_change")),1),
-            "risk_reduction_pct": round(_f(row.get("risk_reduction_pct")),1),
-            "source":       str(row.get("source","lookup") or "lookup"),
-            "is_30mph":     bool(is_30),
-            "color_t":      round(float(row.get("_color_t") or 0), 4),
-            "latlngs":      row["latlngs"],
+            "name":               str(row.get("name") or ""),
+            "highway":            str(row.get("highway") or ""),
+            "length_m":           round(_f(row.get("length_m")), 0),
+            "lanes":              int(row.get("lanes") or 1),
+            "aadf":               int(row.get("aadf") or 0),
+            "crashes_total":      int(row.get("crashes_total") or 0),
+            "pre_annual":         round(_f(row.get("pre_annual")), 3),
+            "post_annual":        round(_f(row.get("post_annual")), 3),
+            "pct_change":         round(_f(row.get("pct_change")), 1),
+            "risk_reduction_pct": round(_f(row.get("risk_reduction_pct")), 1),
+            "is_30mph":           bool(row.get("is_30mph")),
+            "color_t":            round(_f(row.get("color_t")), 4),
+            "segment_count":      int(row.get("segment_count") or 1),
+            "all_latlngs":        all_ll,
         })
 
     return f"""<!DOCTYPE html>
@@ -449,16 +552,20 @@ fetch('https://nominatim.openstreetmap.org/search?q=Stockton-on-Tees&format=json
   .catch(()=>{{}});  // boundary overlay optional — silently skip if blocked
 
 FEATS.forEach(f => {{
-  if (!f.latlngs || !f.latlngs.length) return;
-  const color = f.is_30mph ? reductionColor(f.color_t) : '#d1d5db';
-  const opacity = f.is_30mph ? 0.92 : 0.3;
-  const w = f.highway==='motorway'||f.highway==='trunk'?5:f.highway==='primary'||f.highway==='secondary'?4:3;
-  const line = L.polyline(f.latlngs, {{color, weight:w, opacity}}).addTo(map);
-  line._feat = f; line._w = w;
+  if (!f.all_latlngs || !f.all_latlngs.length) return;
+  const color   = f.is_30mph ? reductionColor(f.color_t) : '#d1d5db';
+  const opacity = f.is_30mph ? 0.92 : 0.28;
+  const w = f.highway==='motorway'||f.highway==='trunk'?6
+          : f.highway==='primary'||f.highway==='secondary'?5:4;
 
-  line.on('mouseover', function(){{ this.setStyle({{weight:this._w+2, opacity:1}}); }});
-  line.on('mouseout',  function(){{ this.setStyle({{weight:this._w, opacity:f.is_30mph?0.92:0.3}}); }});
-  line.on('click', () => showSegment(f));
+  // Render every constituent polyline segment of this corridor
+  f.all_latlngs.forEach(ll => {{
+    if (!ll || !ll.length) return;
+    const line = L.polyline(ll, {{color, weight:w, opacity}}).addTo(map);
+    line.on('mouseover', () => line.setStyle({{weight:w+2, opacity:1}}));
+    line.on('mouseout',  () => line.setStyle({{weight:w, opacity:f.is_30mph?0.92:0.28}}));
+    line.on('click', () => showSegment(f));
+  }});
 }});
 
 function barHtml(label, value, maxVal, color){{
@@ -473,16 +580,17 @@ function barHtml(label, value, maxVal, color){{
 function showSegment(f) {{
   if (!f.is_30mph) {{
     document.getElementById('sb-content').innerHTML =
-      '<div style="color:#9ca3af;font-size:12px;line-height:1.5">This segment is not currently 30 mph — no intervention modelled.</div>';
+      '<div style="color:#9ca3af;font-size:12px;line-height:1.5">This road is not currently 30 mph — no intervention modelled.</div>';
     return;
   }}
-  const pct = f.risk_reduction_pct;
-  const label = f.name || f.highway;
+  const pct    = f.risk_reduction_pct;
+  const label  = f.name || f.highway;
   const maxVal = Math.max(f.pre_annual, 0.001);
+  const lenKm  = (f.length_m / 1000).toFixed(2);
 
   document.getElementById('sb-content').innerHTML = `
     <div style="font-size:13px;font-weight:700;color:#111827;margin-bottom:1px">${{label}}</div>
-    <div style="font-size:10px;color:#6b7280;margin-bottom:10px">${{f.highway}} &nbsp;·&nbsp; ${{Math.round(f.length_m)}} m</div>
+    <div style="font-size:10px;color:#6b7280;margin-bottom:10px">${{f.highway}} &nbsp;·&nbsp; ${{lenKm}} km &nbsp;·&nbsp; ${{f.segment_count}} section${{f.segment_count>1?'s':''}}</div>
 
     <div style="font-size:28px;font-weight:800;color:#16a34a;text-align:center;line-height:1">${{pct.toFixed(1)}}%</div>
     <div style="font-size:10px;color:#6b7280;text-align:center;margin-bottom:10px">predicted crash reduction</div>
@@ -491,7 +599,7 @@ function showSegment(f) {{
       ${{barHtml('Before', f.pre_annual,  maxVal, '#f97316')}}
       ${{barHtml('After',  f.post_annual, maxVal, '#16a34a')}}
     </div>
-    <div style="font-size:10px;color:#9ca3af;margin-bottom:8px">Predicted crashes per year on this segment</div>
+    <div style="font-size:10px;color:#9ca3af;margin-bottom:8px">Predicted crashes / yr across corridor</div>
 
     <hr style="border:none;border-top:1px solid #e5e7eb;margin:6px 0">
     <div class="tt-row"><span>Recorded crashes</span><span class="tt-val">${{f.crashes_total}}</span></div>
