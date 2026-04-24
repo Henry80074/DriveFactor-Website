@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What-If Scenario Planner — DriveFactor</title>
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a class="navbar-brand" href="../../index.html"><span>Drive</span>Factor</a>
+      <button class="navbar-toggler" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Menu">
+        <span class="toggler-icon"></span>
+      </button>
+      <div class="navbar-links-wrap">
+        <ul class="navbar-links">
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../index.html" class="active">Products</a></li>
+          <li><a href="../../#methodology/index.html">Methodology</a></li>
+          <li><a href="../../#contact/index.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="navbar-cta">
+        <a href="mailto:hello@drivefactor.ai" class="btn btn-primary">Request a demo</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a><span class="breadcrumb-sep">/</span>
+      <a href="../index.html">Products</a><span class="breadcrumb-sep">/</span>
+      <span>What-If Scenario Planner</span>
+    </div>
+    <div class="product-tag" style="background:#f3e5f5; color:#7e22ce;">⚙️ Analysis tool</div>
+    <h1>What-If Scenario Planner</h1>
+    <p>Adjust hypothetical traffic conditions — speed, congestion, weather — and see immediately how combined crash risk responds across the network. A dose-response tool built on L2 × L3 model outputs, requiring no re-simulation.</p>
+  </div>
+</div>
+
+<div class="map-section">
+  <div class="map-frame-wrapper">
+    <iframe src="../../data_products/whatif.html" title="Tees Valley what-if scenario planner" loading="lazy"></iframe>
+  </div>
+  <div class="map-caption">
+    <div class="map-caption-text">
+      <strong>Tees Valley</strong> · What-If Scenario Planner · Adjust sliders in the map panel to explore risk response
+    </div>
+    <div class="map-legend">
+      <div class="legend-item"><div class="legend-swatch" style="background:#7f1d1d;"></div>Severe uplift</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#f97316;"></div>High uplift</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#fbbf24;"></div>Moderate</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#86efac;"></div>Below baseline</div>
+    </div>
+  </div>
+</div>
+
+<section class="product-detail">
+  <div class="container">
+    <div class="product-detail-grid">
+      <div>
+        <h2>How the planner works</h2>
+        <p>The scenario planner evaluates the L2 × L3 risk model at hypothetical input values rather than re-running any simulation. Speed changes are converted to per-link z-scores using historical IQR values, which are then passed through the L3 GAM to produce odds ratios. Weather conditions update the L2 multiplier via a precomputed lookup table.</p>
+        <p>The combined score — L2 × L3, capped at 8× — is applied to each segment and the map updates immediately. This means planners can explore thousands of scenarios without running new traffic models.</p>
+        <p>Typical applications include assessing how a congested PM peak with rain changes the risk profile of a key corridor, or quantifying the risk benefit of a 10mph speed reduction on a particular route.</p>
+        <div class="detail-note">
+          Use the sliders and dropdowns within the embedded map above to adjust conditions. The map responds without page reload.
+        </div>
+      </div>
+      <div class="fact-sidebar">
+        <div class="fact-item">
+          <div class="fact-label">Inputs</div>
+          <div class="fact-value">Speed, weather</div>
+          <div class="fact-desc">Time, road type, precipitation, wind</div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-label">Model layers</div>
+          <div class="fact-value">L2 × L3</div>
+          <div class="fact-desc">Temporal-weather × live traffic</div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-label">Cap</div>
+          <div class="fact-value">8.0×</div>
+          <div class="fact-desc">Combined multiplier ceiling</div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-label">Response</div>
+          <div class="fact-value">Instant</div>
+          <div class="fact-desc">No re-simulation required</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-strip">
+  <div class="container">
+    <div class="cta-inner">
+      <div>
+        <h2>Deploy on your network</h2>
+        <p>The scenario planner can be configured against any road network with Aimsun simulation or WebTRIS sensor data.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="mailto:hello@drivefactor.ai" class="btn btn-white">Get in touch</a>
+        <a href="../index.html" class="btn btn-white-outline">All products</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="footer-brand"><span>Drive</span>Factor</div><p>Geospatial road safety analytics grounded in crash data, sensor feeds and road geometry.</p></div>
+      <div><h5>Products</h5><ul class="footer-links">
+        <li><a href="../spatial-risk/index.html">Spatial Risk Maps</a></li>
+        <li><a href="../traffic-risk/index.html">Dynamic Traffic Risk</a></li>
+        <li><a href="../sun-glare/index.html">Sun Glare Maps</a></li>
+        <li><a href="../rain-dark/index.html">Rain &amp; Low Light</a></li>
+        <li><a href="../scenario-planner/index.html">Scenario Planner</a></li>
+        <li><a href="../live-alerts/index.html">Live Alerts</a></li>
+      </ul></div>
+      <div><h5>Contact</h5><ul class="footer-links"><li><a href="mailto:hello@drivefactor.ai">hello@drivefactor.ai</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 DriveFactor</span><span>Road Risk Engine v5.1</span></div>
+  </div>
+</footer>
+</body>
+</html>

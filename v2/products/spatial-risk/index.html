@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spatial Risk Maps — DriveFactor</title>
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a class="navbar-brand" href="../../index.html"><span>Drive</span>Factor</a>
+      <button class="navbar-toggler" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Menu">
+        <span class="toggler-icon"></span>
+      </button>
+      <div class="navbar-links-wrap">
+        <ul class="navbar-links">
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../index.html" class="active">Products</a></li>
+          <li><a href="../../#methodology/index.html">Methodology</a></li>
+          <li><a href="../../#contact/index.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="navbar-cta">
+        <a href="mailto:hello@drivefactor.ai" class="btn btn-primary">Request a demo</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href="../index.html">Products</a>
+      <span class="breadcrumb-sep">/</span>
+      <span>Spatial Risk Maps</span>
+    </div>
+    <div class="product-tag" style="background:#fff3e0; color:#b45309;">🗺️ Layer 1 · Spatial</div>
+    <h1>Spatial Risk Maps</h1>
+    <p>Crash probability per road segment, derived from road geometry, junction structure, speed limit, road type and historical crash density. The static baseline layer of the DriveFactor risk engine.</p>
+  </div>
+</div>
+
+<!-- MAP -->
+<div class="map-section">
+  <div class="map-frame-wrapper">
+    <iframe src="../../data_products/spatial_risk.html" title="Tees Valley spatial crash density and risk map" loading="lazy"></iframe>
+  </div>
+  <div class="map-caption">
+    <div class="map-caption-text">
+      <strong>Tees Valley network</strong> · A66, A19, A174 corridors · Stats19 2013–2023
+    </div>
+    <div class="map-legend">
+      <div class="legend-item"><div class="legend-swatch" style="background:#ef4444;"></div>High risk</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#f97316;"></div>Elevated</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#fbbf24;"></div>Moderate</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#22c55e;"></div>Low</div>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL -->
+<section class="product-detail">
+  <div class="container">
+    <div class="product-detail-grid">
+      <div>
+        <h2>What the map shows</h2>
+        <p>Each road segment is coloured by its modelled crash probability relative to the network average. Segments absorb crash history from Stats19 records matched to OSM geometry via spatial join and nearest-link assignment.</p>
+        <p>Colour thresholds are network-relative: red segments sit in the top 5% of predicted crash probability on this network. This makes the map directly comparable across routes and useful for prioritising site investigations.</p>
+        <p>The map can be filtered by road type, speed limit band, or severity threshold. Underlying segment data is exportable as GeoJSON or CSV for integration with GIS workflows.</p>
+        <div class="detail-note">
+          This layer provides the L1 spatial baseline. It does not change with time of day or traffic conditions — for dynamic scoring, see the <a href="../traffic-risk/index.html">Dynamic Traffic Risk</a> product.
+        </div>
+      </div>
+      <div class="fact-sidebar">
+        <div class="fact-item">
+          <div class="fact-label">Model</div>
+          <div class="fact-value">XGBoost</div>
+          <div class="fact-desc">Gradient boosted trees on OSM geometry features</div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-label">Training data</div>
+          <div class="fact-value">Stats19</div>
+          <div class="fact-desc">2013–2023 · All severities</div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-label">Road network</div>
+          <div class="fact-value">OSM</div>
+          <div class="fact-desc">OpenStreetMap · Any UK network</div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-label">Output format</div>
+          <div class="fact-value">GeoJSON</div>
+          <div class="fact-desc">QGIS / ArcGIS compatible</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-strip">
+  <div class="container">
+    <div class="cta-inner">
+      <div>
+        <h2>Apply to your network</h2>
+        <p>Spatial risk maps can be generated for any UK road network with Stats19 coverage.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="mailto:hello@drivefactor.ai" class="btn btn-white">Get in touch</a>
+        <a href="../index.html" class="btn btn-white-outline">All products</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand"><span>Drive</span>Factor</div>
+        <p>Geospatial road safety analytics grounded in crash data, sensor feeds and road geometry.</p>
+      </div>
+      <div>
+        <h5>Products</h5>
+        <ul class="footer-links">
+          <li><a href="../spatial-risk/index.html">Spatial Risk Maps</a></li>
+          <li><a href="../traffic-risk/index.html">Dynamic Traffic Risk</a></li>
+          <li><a href="../sun-glare/index.html">Sun Glare Maps</a></li>
+          <li><a href="../rain-dark/index.html">Rain &amp; Low Light</a></li>
+          <li><a href="../scenario-planner/index.html">Scenario Planner</a></li>
+          <li><a href="../live-alerts/index.html">Live Alerts</a></li>
+        </ul>
+      </div>
+      <div><h5>Contact</h5><ul class="footer-links"><li><a href="mailto:hello@drivefactor.ai">hello@drivefactor.ai</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 DriveFactor</span><span>Road Risk Engine v5.1</span></div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Driver Road Risk — DriveFactor</title>
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a class="navbar-brand" href="../../index.html"><span>Drive</span>Factor</a>
+      <button class="navbar-toggler" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Menu">
+        <span class="toggler-icon"></span>
+      </button>
+      <div class="navbar-links-wrap">
+        <ul class="navbar-links">
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../index.html" class="active">Products</a></li>
+          <li><a href="../../#methodology/index.html">Methodology</a></li>
+          <li><a href="../../#contact/index.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="navbar-cta">
+        <a href="mailto:hello@drivefactor.ai" class="btn btn-primary">Request a demo</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a><span class="breadcrumb-sep">/</span>
+      <a href="../index.html">Products</a><span class="breadcrumb-sep">/</span>
+      <span>Driver Road Risk</span>
+    </div>
+    <div class="product-tag" style="background:#ede9fe; color:#5b21b6;">📊 Exposure</div>
+    <h1>Driver Road Risk</h1>
+    <p>Absolute crash risk per vehicle kilometre travelled (VKT) — the likelihood that any given vehicle journey on a segment results in a collision. Normalises raw crash counts by traffic volume to expose genuinely dangerous roads, not just busy ones.</p>
+  </div>
+</div>
+
+<div class="map-section">
+  <div class="map-frame-wrapper">
+    <iframe src="../../data_products/absolute_risk.html" title="Tees Valley driver road risk per vehicle km" loading="lazy"></iframe>
+  </div>
+  <div class="map-caption">
+    <div class="map-caption-text">
+      <strong>Tees Valley</strong> · Annual crashes per million vehicle kilometres travelled
+    </div>
+    <div class="map-legend">
+      <div class="legend-item"><div class="legend-swatch" style="background:#084594;"></div>Very high risk / VKT</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#2171b5;"></div>Elevated</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#9ecae1;"></div>Moderate</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#deebf7;"></div>Low exposure</div>
+    </div>
+  </div>
+</div>
+
+<section class="product-detail">
+  <div class="container">
+    <div class="product-detail-grid">
+      <div>
+        <h2>What the map shows</h2>
+        <p>This map shows absolute crash risk per million vehicle kilometres travelled (MVKT) — the probability that a vehicle travelling along a given road segment will be involved in a collision. By dividing modelled annual crashes by total vehicle exposure (AADF × segment length × 365 days), it removes the confounding effect of traffic volume.</p>
+        <p>A busy A-road with 50 crashes a year and 10 million VKT has a lower risk per VKT than a quiet rural B-road with 5 crashes and only 100k VKT. This measure identifies roads that are genuinely dangerous to use, not simply roads that carry a lot of traffic.</p>
+        <p>The metric is directly comparable to national benchmarks published by DfT and used in Safe System approaches to road design. It is the correct input for prioritising capital investment schemes and safety camera deployments where reducing risk-per-journey is the objective.</p>
+        <p>Combined with <a href="../traffic-risk/index.html">Dynamic Road Risk</a> modelling, the per-VKT baseline enables <strong>route safety optimisation</strong> and <strong>dynamic departure scheduling</strong> — selecting the lowest-risk path or departure time based on real-time conditions, diurnal flow profiles, and weather multipliers. This makes Driver Road Risk a core input for fleet safety systems, logistics routing engines, and connected vehicle platforms seeking to minimise exposure-weighted crash probability across a journey.</p>
+      </div>
+      <div class="fact-sidebar">
+        <div class="fact-item">
+          <div class="fact-label">Metric</div>
+          <div class="fact-value">Crashes / MVKT</div>
+          <div class="fact-desc">Crashes per million vehicle km</div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-label">Traffic source</div>
+          <div class="fact-value">WebTRIS AADF</div>
+          <div class="fact-desc">814k count intervals · 2019–2023</div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-label">Crash model</div>
+          <div class="fact-value">XGBoost L1</div>
+          <div class="fact-desc">Calibrated to Stats19 · AUC 0.762</div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-label">Use case</div>
+          <div class="fact-value">Route safety</div>
+          <div class="fact-desc">Capital schemes · departure scheduling · fleet routing</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-strip">
+  <div class="container">
+    <div class="cta-inner">
+      <div>
+        <h2>Route safety optimisation &amp; departure scheduling</h2>
+        <p>Driver Road Risk reports can be produced for any network, with breakdowns by road type, speed limit, and area type. Combined with dynamic risk modelling, the per-VKT baseline powers risk-minimising routing and departure time optimisation for fleet operators and logistics platforms.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="mailto:hello@drivefactor.ai" class="btn btn-white">Get in touch</a>
+        <a href="../index.html" class="btn btn-white-outline">All products</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="footer-brand"><span>Drive</span>Factor</div><p>Geospatial road safety analytics grounded in crash data, sensor feeds and road geometry.</p></div>
+      <div><h5>Products</h5><ul class="footer-links">
+        <li><a href="../spatial-risk/index.html">Spatial Risk Maps</a></li>
+        <li><a href="../traffic-risk/index.html">Dynamic Traffic Risk</a></li>
+        <li><a href="../sun-glare/index.html">Sun Glare Maps</a></li>
+        <li><a href="../rain-dark/index.html">Driver Road Risk</a></li>
+        <li><a href="../scenario-planner/index.html">Scenario Planner</a></li>
+        <li><a href="../live-alerts/index.html">Live Alerts</a></li>
+      </ul></div>
+      <div><h5>Contact</h5><ul class="footer-links"><li><a href="mailto:hello@drivefactor.ai">hello@drivefactor.ai</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 DriveFactor</span><span>Road Risk Engine v5.1</span></div>
+  </div>
+</footer>
+</body>
+</html>

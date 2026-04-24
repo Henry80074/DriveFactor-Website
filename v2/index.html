@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DriveFactor — Road Risk Intelligence</title>
+  <meta name="description" content="Geospatial road safety analytics for local authorities and transport planners. Spatial risk maps, sun glare analysis, live traffic risk scoring and scenario modelling.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a class="navbar-brand" href="./index.html"><span>Drive</span>Factor</a>
+      <button class="navbar-toggler" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Menu">
+        <span class="toggler-icon"></span>
+      </button>
+      <div class="navbar-links-wrap">
+        <ul class="navbar-links">
+          <li><a href="./index.html" class="active">Home</a></li>
+          <li>
+            <a href="products/index.html">Products ▾</a>
+            <div class="nav-dropdown">
+              <a href="products/spatial-risk/index.html">
+                <div class="nav-dropdown-icon" style="background:#fff3e0;">🗺️</div>
+                <div class="nav-dropdown-text">
+                  <strong>Spatial Risk Maps</strong>
+                  <span>Per-segment crash probability from road geometry and history</span>
+                </div>
+              </a>
+              <a href="products/traffic-risk/index.html">
+                <div class="nav-dropdown-icon" style="background:#e8f5e9;">📡</div>
+                <div class="nav-dropdown-text">
+                  <strong>Dynamic Traffic Risk</strong>
+                  <span>Live and Aimsun-modelled traffic speed risk scoring (L3)</span>
+                </div>
+              </a>
+              <a href="products/sun-glare/index.html">
+                <div class="nav-dropdown-icon" style="background:#fff8e1;">☀️</div>
+                <div class="nav-dropdown-text">
+                  <strong>Sun Glare Intensity Maps</strong>
+                  <span>Solar trajectory overlaid on road bearing for glare exposure</span>
+                </div>
+              </a>
+              <a href="products/rain-dark/index.html">
+                <div class="nav-dropdown-icon" style="background:#e3f2fd;">🌧️</div>
+                <div class="nav-dropdown-text">
+                  <strong>Rain &amp; Low Light Risk</strong>
+                  <span>Combined precipitation and darkness multiplier maps</span>
+                </div>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="products/scenario-planner/index.html">
+                <div class="nav-dropdown-icon" style="background:#f3e5f5;">⚙️</div>
+                <div class="nav-dropdown-text">
+                  <strong>What-If Scenario Planner</strong>
+                  <span>Dose-response risk modelling for hypothetical traffic conditions</span>
+                </div>
+              </a>
+              <a href="products/live-alerts/index.html">
+                <div class="nav-dropdown-icon" style="background:#fce4ec;">🔔</div>
+                <div class="nav-dropdown-text">
+                  <strong>Live Risk Alerts</strong>
+                  <span>15-minute PM peak risk scoring from WebTRIS loop sensors</span>
+                </div>
+              </a>
+            </div>
+          </li>
+          <li><a href="#methodology">Methodology</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="navbar-cta">
+        <a href="mailto:hello@drivefactor.ai" class="btn btn-primary">Request a demo</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="home-hero">
+  <div class="container">
+    <div class="home-hero-inner">
+      <div class="label">Road risk intelligence</div>
+      <h1>Geospatial safety analytics for roads professionals</h1>
+      <p>
+        DriveFactor produces evidence-based risk maps and dynamic scoring tools
+        for local authorities, road safety teams and transport planners —
+        grounded in Stats19 crash data, live sensor feeds and road geometry.
+      </p>
+      <div class="hero-actions">
+        <a href="products/index.html" class="btn btn-primary">View products</a>
+        <a href="#methodology" class="btn btn-ghost">How it works</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-cell">
+        <div class="stat-number">0.76</div>
+        <div class="stat-label">AUC — live crash risk model (L3)</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-number">814k</div>
+        <div class="stat-label">Sensor intervals used in model training</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-number">11×</div>
+        <div class="stat-label">Peak odds ratio at −1 IQR speed deviation</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-number">560k</div>
+        <div class="stat-label">Stats19 crashes (2013–2023) in temporal model</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="products-section" id="products">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Products</div>
+      <h2>Six data products, one risk engine</h2>
+      <p>Each product addresses a distinct question in road safety — from where crashes cluster, to when and why risk spikes during a wet PM peak.</p>
+    </div>
+    <div class="product-grid">
+
+      <a href="products/spatial-risk/index.html" class="product-card">
+        <div class="product-card-thumb" style="background:#fff8f0;">
+          <img src="images/thumbs/thumb_spatial.jpg" alt="Spatial Risk Map thumbnail" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-tag" style="color:#b45309;">Layer 1 · Spatial</div>
+          <h3>Spatial Risk Maps</h3>
+          <p>Per-segment crash probability surface derived from road geometry, junction density, speed limit and historical crash counts. Static baseline risk.</p>
+          <span class="product-card-link">View product →</span>
+        </div>
+      </a>
+
+      <a href="products/traffic-risk/index.html" class="product-card">
+        <div class="product-card-thumb" style="background:#f0f9f0;">
+          <img src="images/thumbs/thumb_dynamic.jpg" alt="Dynamic Traffic Risk Map thumbnail" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-tag" style="color:#166534;">Layer 3 · Live traffic</div>
+          <h3>Dynamic Traffic Risk Maps</h3>
+          <p>Real-time and modelled traffic risk scoring using speed deviation from per-link baselines. Validated on Tees Valley A-road network.</p>
+          <span class="product-card-link">View product →</span>
+        </div>
+      </a>
+
+      <a href="products/sun-glare/index.html" class="product-card">
+        <div class="product-card-thumb" style="background:#fffbf0;">
+          <img src="images/thumbs/thumb_sunglare.jpg" alt="Sun Glare Map thumbnail" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-tag" style="color:#92400e;">Environmental</div>
+          <h3>Sun Glare Intensity Maps</h3>
+          <p>Solar azimuth mapped against road bearing to identify glare-exposure windows. Risk uplift of 2–4× identified at severe glare alignments.</p>
+          <span class="product-card-link">View product →</span>
+        </div>
+      </a>
+
+      <a href="products/rain-dark/index.html" class="product-card">
+        <div class="product-card-thumb" style="background:#f0f4ff;">
+          <img src="images/thumbs/thumb_mvkt.jpg" alt="Driver Road Risk Map thumbnail" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-tag" style="color:#1e40af;">Environmental</div>
+          <h3>Rain &amp; Low Light Risk</h3>
+          <p>Combined precipitation and darkness risk layer. Shows where routes are most exposed to combined adverse conditions by time of day and season.</p>
+          <span class="product-card-link">View product →</span>
+        </div>
+      </a>
+
+      <a href="products/scenario-planner/index.html" class="product-card">
+        <div class="product-card-thumb" style="background:#fdf4ff;">
+          <img src="images/thumbs/thumb_whatif.jpg" alt="What-If Scenario Planner thumbnail" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-tag" style="color:#7e22ce;">Analysis tool</div>
+          <h3>What-If Scenario Planner</h3>
+          <p>Adjust speed, weather, time and road conditions to see modelled risk response across the network. No simulation — instant dose-response lookup.</p>
+          <span class="product-card-link">View product →</span>
+        </div>
+      </a>
+
+      <a href="products/live-alerts/index.html" class="product-card">
+        <div class="product-card-thumb" style="background:#f0fdf4;">
+          <img src="images/thumbs/thumb_intervention.jpg" alt="Intervention Planner thumbnail" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-tag" style="color:#166534;">Analysis tool</div>
+          <h3>Road Safety Intervention Planner</h3>
+          <p>Click any 30 mph road to see the modelled crash reduction from a 30→20 mph change. Predictions from a causal forest trained on UK-wide staggered DiD, with Wales k-NN fallback.</p>
+          <span class="product-card-link">View product →</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- METHODOLOGY -->
+<section class="methodology-section" id="methodology">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Methodology</div>
+      <h2>A three-layer risk architecture</h2>
+      <p>Each layer addresses a different time horizon of crash risk. They multiply together to produce a combined score.</p>
+    </div>
+
+    <div class="layer-list">
+      <div class="layer-item">
+        <div class="layer-num" style="background:#fff3e0; color:#b45309;">L1</div>
+        <div class="layer-content">
+          <h4>Spatial baseline — road geometry and crash history</h4>
+          <p>XGBoost model trained on OpenStreetMap geometry features and historic Stats19 crash rates per road segment. Produces a static per-segment baseline risk score capturing where crashes cluster structurally.</p>
+        </div>
+        <div class="layer-meta">
+          <div class="metric">XGBoost</div>
+          <div class="metric-label">OSM + Stats19</div>
+        </div>
+      </div>
+      <div class="layer-item">
+        <div class="layer-num" style="background:#e8f5e9; color:#166534;">L2</div>
+        <div class="layer-content">
+          <h4>Temporal &amp; weather — when and under what conditions</h4>
+          <p>Penalised Poisson GAM trained on 560,000 Stats19 crashes (2013–2023), AADF-weighted. Models crash rate as a function of hour, day type, month, precipitation and wind gust. Typical multiplier range 0.4–4.0×.</p>
+        </div>
+        <div class="layer-meta">
+          <div class="metric">0.4–4.0×</div>
+          <div class="metric-label">Multiplier range</div>
+        </div>
+      </div>
+      <div class="layer-item">
+        <div class="layer-num" style="background:#e8f1f9; color:#005fa3;">L3</div>
+        <div class="layer-content">
+          <h4>Live traffic — speed deviation from per-link baselines</h4>
+          <p>Varying-coefficient cyclic cubic spline GAM trained on 814,700 WebTRIS sensor intervals. Converts within-stratum speed z-score to crash odds ratio. AUC 0.762 on held-out intervals. Up to 11× OR at −1 IQR speed deviation.</p>
+        </div>
+        <div class="layer-meta">
+          <div class="metric">AUC 0.762</div>
+          <div class="metric-label">814k intervals</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="formula-block">
+      combined_risk = L1_spatial × L2_temporal_weather × L3_live_traffic
+    </div>
+  </div>
+</section>
+
+<!-- USE CASES -->
+<section class="use-cases-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Use cases</div>
+      <h2>Built for roads professionals</h2>
+    </div>
+    <div class="use-case-grid">
+      <div class="use-case-card">
+        <div class="use-case-icon">🏛️</div>
+        <h4>Local Authorities</h4>
+        <p>Prioritise safety investment using evidence-based spatial risk maps. Quantify the risk impact of congestion or adverse conditions on your network before interventions are committed.</p>
+      </div>
+      <div class="use-case-card">
+        <div class="use-case-icon">🚛</div>
+        <h4>Fleet Operators</h4>
+        <p>Route and schedule planning informed by dynamic risk scores. Identify when and where your vehicles are exposed to elevated risk, and model the effect of timing or route changes.</p>
+      </div>
+      <div class="use-case-card">
+        <div class="use-case-icon">📋</div>
+        <h4>Road Safety Audits</h4>
+        <p>Supplement site-visit observations with quantitative risk data. Sun glare maps and crash density layers provide objective context for safety audit recommendations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-strip" id="contact">
+  <div class="container">
+    <div class="cta-inner">
+      <div>
+        <h2>Get in touch</h2>
+        <p>We work with local authorities and transport organisations to deploy risk analytics against real road networks.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="mailto:hello@drivefactor.ai" class="btn btn-white">hello@drivefactor.ai</a>
+        <a href="products/index.html" class="btn btn-white-outline">Browse products</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand"><span>Drive</span>Factor</div>
+        <p>Geospatial road safety analytics grounded in crash data, sensor feeds and road geometry.</p>
+      </div>
+      <div>
+        <h5>Products</h5>
+        <ul class="footer-links">
+          <li><a href="products/spatial-risk/index.html">Spatial Risk Maps</a></li>
+          <li><a href="products/traffic-risk/index.html">Dynamic Traffic Risk</a></li>
+          <li><a href="products/sun-glare/index.html">Sun Glare Maps</a></li>
+          <li><a href="products/rain-dark/index.html">Rain &amp; Low Light</a></li>
+          <li><a href="products/scenario-planner/index.html">Scenario Planner</a></li>
+          <li><a href="products/live-alerts/index.html">Live Alerts</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul class="footer-links">
+          <li><a href="#methodology">Methodology</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul class="footer-links">
+          <li><a href="mailto:hello@drivefactor.ai">hello@drivefactor.ai</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 DriveFactor</span>
+      <span>Road Risk Engine v5.1</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
