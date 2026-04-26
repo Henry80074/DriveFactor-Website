@@ -123,13 +123,14 @@ a:hover { text-decoration: underline; }
 /* Dropdown */
 .nav-dropdown {
   position: absolute;
-  top: calc(100% + 4px);
+  top: 100%;
   left: 0;
   background: var(--white);
   border: 1px solid var(--grey-200);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
   padding: 8px;
+  padding-top: 12px;
   min-width: 280px;
   opacity: 0;
   pointer-events: none;
@@ -142,6 +143,16 @@ a:hover { text-decoration: underline; }
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
+}
+
+/* Invisible bridge to prevent hover gap breaking dropdown */
+.nav-dropdown::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 0;
+  right: 0;
+  height: 12px;
 }
 
 .nav-dropdown a {
