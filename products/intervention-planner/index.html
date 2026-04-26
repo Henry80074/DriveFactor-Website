@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Road Safety Intervention Planner — DriveFactor</title>
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a class="navbar-brand" href="../../index.html"><span>Drive</span>Factor</a>
+      <button class="navbar-toggler" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Menu">
+        <span class="toggler-icon"></span>
+      </button>
+      <div class="navbar-links-wrap">
+        <ul class="navbar-links">
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../../platform/index.html">Platform</a></li>
+          <li><a href="../index.html" class="active">Products</a></li>
+          <li><a href="../../index.html#methodology">Methodology</a></li>
+          <li><a href="../../index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="navbar-cta">
+        <a href="mailto:hello@drivefactor.ai" class="btn btn-primary">Request a demo</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a><span class="breadcrumb-sep">/</span>
+      <a href="../index.html">Products</a><span class="breadcrumb-sep">/</span>
+      <span>Road Safety Intervention Planner</span>
+    </div>
+    <div class="product-tag" style="background:#dcfce7; color:#166534;">Analysis tool</div>
+    <h1>Road Safety Intervention Planner</h1>
+    <p>Predict the expected collision reduction from a road safety intervention, corridor by corridor, grounded in a proprietary dataset of measured scheme outcomes from across the UK road network. Demonstrated here for 30 to 20 mph speed limit changes, the approach can be extended to other intervention types where evidence is available.</p>
+  </div>
+</div>
+
+<div class="map-section">
+  <div class="map-frame-wrapper">
+    <iframe src="../../data_products/intervention.html" title="30→20 mph collision impact planner" loading="lazy"></iframe>
+  </div>
+  <div class="map-caption">
+    <div class="map-caption-text">
+      <strong>Stockton-on-Tees</strong> · 30→20 mph collision impact
+    </div>
+    <div class="map-legend">
+      <div class="legend-item"><div class="legend-swatch" style="background:#14532d;"></div>&gt;30% reduction</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#16a34a;"></div>20–30% reduction</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#86efac;"></div>&lt;20% reduction</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#d1d5db;"></div>Not 30 mph</div>
+    </div>
+  </div>
+</div>
+
+<section class="product-detail">
+  <div class="container">
+    <div class="product-detail-grid">
+      <div>
+        <h2>Explanation</h2>
+        <p>Each road segment shown is a 30 mph road in Stockton-on-Tees. This map shows the expected percentage improvement in collision risk and the expected absolute collision reduction road given speed limit reduction.</p>
+        <p>Darker colours represent greater predicted benefit. Segments can be clicked to view their estimated reduction, recorded collision history and key road characteristics.</p>
+        <p>Predictions draw on a combination of road geometry, traffic volume, calculated road features and wider network context. The model is trained on evidence from 20 mph zone implementations across the UK, including analysis of collision outcomes before and after speed limit changes on comparable roads.</p>
+        <p>Crash records spanning a decade of Stats19 data are matched to each road segment to inform the risk baseline. The planner accounts for road type, lane configuration and the surrounding road environment to produce estimates that reflect the specific characteristics of each corridor rather than applying a single blanket figure.</p>
+      </div>
+      <div class="fact-sidebar">
+        <div class="fact-item">
+          <div class="fact-label">Scope</div>
+          <div class="fact-value">30 mph roads</div>
+          <div class="fact-desc">Eligible for 20 mph speed limit intervention</div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-label">Evidence base</div>
+          <div class="fact-value">UK 20 mph zones</div>
+          <div class="fact-desc">Before/after outcomes from comparable road types</div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-label">Output</div>
+          <div class="fact-value">Corridor-level</div>
+          <div class="fact-desc">Estimated collision reduction per corridor</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-strip">
+  <div class="container">
+    <div class="cta-inner">
+      <div>
+        <h2>Model the impact of road safety interventions on your network</h2>
+        <p>Outputs include corridor-level collision reduction estimates, confidence intervals, and total avoidable collisions per year to support business case development.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="mailto:hello@drivefactor.ai" class="btn btn-white">Get in touch</a>
+        <a href="../index.html" class="btn btn-white-outline">All products</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand"><span>Drive</span>Factor</div>
+        <p>Predictive road risk intelligence for mobility leaders.</p>
+      </div>
+      <div>
+        <h5>Products</h5>
+        <ul class="footer-links">
+          <li><a href="../../products/spatial-risk/index.html">Spatial Risk Maps</a></li>
+          <li><a href="../../products/dynamic-risk/index.html">Dynamic Risk Modelling</a></li>
+          <li><a href="../../products/sun-glare/index.html">Sun Glare Intensity</a></li>
+          <li><a href="../../products/absolute-road-risk/index.html">Absolute Road Risk</a></li>
+          <li><a href="../../products/scenario-planner/index.html">Traffic Scenario Planner</a></li>
+          <li><a href="../../products/intervention-planner/index.html">Intervention Planner</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul class="footer-links">
+          <li><a href="../../platform/index.html">Platform</a></li>
+          <li><a href="../../index.html#methodology">Methodology</a></li>
+          <li><a href="../../index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul class="footer-links">
+          <li><a href="mailto:hello@drivefactor.ai">hello@drivefactor.ai</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 DriveFactor</span>
+      <span>Road Risk Engine v5.1</span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
+
+</head>
+<body>
+</body>
+</html>

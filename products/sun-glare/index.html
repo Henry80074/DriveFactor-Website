@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sun Glare Intensity Maps — DriveFactor</title>
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a class="navbar-brand" href="../../index.html"><span>Drive</span>Factor</a>
+      <button class="navbar-toggler" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Menu">
+        <span class="toggler-icon"></span>
+      </button>
+      <div class="navbar-links-wrap">
+        <ul class="navbar-links">
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../../platform/index.html">Platform</a></li>
+          <li><a href="../index.html" class="active">Products</a></li>
+          <li><a href="../../index.html#methodology">Methodology</a></li>
+          <li><a href="../../index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="navbar-cta">
+        <a href="mailto:hello@drivefactor.ai" class="btn btn-primary">Request a demo</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a><span class="breadcrumb-sep">/</span>
+      <a href="../index.html">Products</a><span class="breadcrumb-sep">/</span>
+      <span>Sun Glare Intensity Maps</span>
+    </div>
+    <div class="product-tag" style="background:#fff8e1; color:#92400e;">Environmental</div>
+    <h1>Sun Glare Intensity Maps</h1>
+    <p>Models sun trajectory alignment with road geometry. Identifies which segments face direct sun exposure by time of day and season, and flags periods of severe glare risk.</p>
+  </div>
+</div>
+
+<div class="map-section">
+  <div class="map-frame-wrapper">
+    <iframe src="../../data_products/sunglare.html" title="Tees Valley sun glare intensity map" loading="lazy"></iframe>
+  </div>
+  <div class="map-caption">
+    <div class="map-caption-text">
+      <strong>Tees Valley</strong> · Monday 2 March 2026 · AM and PM glare windows
+    </div>
+    <div class="map-legend">
+      <div class="legend-item"><div class="legend-swatch" style="background:#dc2626;"></div>Severe glare (≤5° alignment)</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#f97316;"></div>Moderate glare</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#fbbf24;"></div>Low glare</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#94a3b8;"></div>No exposure</div>
+    </div>
+  </div>
+</div>
+
+<section class="product-detail">
+  <div class="container">
+    <div class="product-detail-grid">
+      <div>
+        <h2>Explanation</h2>
+        <p>The map shows sun glare exposure across the road network, calculated for a single day. Solar position is computed for the selected date and location, then compared against the geometry of each road segment to identify where drivers travelling in a given direction will face direct sun exposure.</p>
+        <p>When the sun is closely aligned with the road geometry, drivers face the most acute glare conditions. The map colours segments by glare severity across the selected time window, from no exposure through to the most severe alignment where visibility is significantly impaired.</p>
+        <p>Seasonal patterns matter significantly. The autumn and spring morning peaks produce particularly acute glare on east-facing routes, while the evening peak creates hazardous conditions for westbound roads. The time slider allows exploration of how glare windows shift across the full day.</p>
+        <div class="detail-note">
+          Our analysis indicates that sun glare is associated with a materially elevated collision risk. This layer can be overlaid with spatial risk scores to identify high-priority segments for investigation or treatment.
+        </div>
+      </div>
+      <div class="fact-sidebar">
+        <div class="fact-item">
+          <div class="fact-label">Glare measure</div>
+          <div class="fact-value">Solar alignment</div>
+          <div class="fact-desc">Solar azimuth and elevation vs road geometry</div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-label">Collision uplift</div>
+          <div class="fact-value">Statistically significant</div>
+          <div class="fact-desc">Stats19 records a materially higher collision rate under bright sun and glare lighting conditions compared to standard daylight</div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-label">Coverage</div>
+          <div class="fact-value">Any network</div>
+          <div class="fact-desc">Any location, any date range</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-strip">
+  <div class="container">
+    <div class="cta-inner">
+      <div>
+        <h2>Apply to your network</h2>
+        <p>Sun glare maps can be produced for any road network and any date range. Useful for seasonal safety reviews and audit support.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="mailto:hello@drivefactor.ai" class="btn btn-white">Get in touch</a>
+        <a href="../index.html" class="btn btn-white-outline">All products</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand"><span>Drive</span>Factor</div>
+        <p>Predictive road risk intelligence for mobility leaders.</p>
+      </div>
+      <div>
+        <h5>Products</h5>
+        <ul class="footer-links">
+          <li><a href="../../products/spatial-risk/index.html">Spatial Risk Maps</a></li>
+          <li><a href="../../products/dynamic-risk/index.html">Dynamic Risk Modelling</a></li>
+          <li><a href="../../products/sun-glare/index.html">Sun Glare Intensity</a></li>
+          <li><a href="../../products/absolute-road-risk/index.html">Absolute Road Risk</a></li>
+          <li><a href="../../products/scenario-planner/index.html">Traffic Scenario Planner</a></li>
+          <li><a href="../../products/intervention-planner/index.html">Intervention Planner</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul class="footer-links">
+          <li><a href="../../platform/index.html">Platform</a></li>
+          <li><a href="../../index.html#methodology">Methodology</a></li>
+          <li><a href="../../index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul class="footer-links">
+          <li><a href="mailto:hello@drivefactor.ai">hello@drivefactor.ai</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 DriveFactor</span>
+      <span>Road Risk Engine v5.1</span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
