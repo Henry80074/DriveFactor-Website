@@ -38,6 +38,12 @@ hr.tt-div{border:none;border-top:1px solid #e5e7eb;margin:5px 0}
 .ctrl-val{font-size:12px;font-weight:700;color:#111827;min-width:46px;text-align:right}
 input[type=range]{width:100%;accent-color:#2563eb;margin:2px 0 5px}
 select{width:100%;padding:5px 7px;border:1px solid #d1d5db;border-radius:5px;font-size:12px;background:#f9fafb;color:#111827}
+#mobile-ctrl-btn{display:none;position:fixed;bottom:20px;left:16px;z-index:1001;background:#1f2937;color:#fff;border:none;border-radius:99px;padding:10px 22px;font-size:13px;font-weight:600;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.3);align-items:center;gap:6px}
+@media(max-width:768px){
+  #ctrl-panel{position:fixed !important;top:auto !important;left:0 !important;right:0 !important;bottom:0 !important;width:100% !important;max-width:100% !important;border-radius:12px 12px 0 0;border-top:2px solid #e5e7eb;transform:translateY(100%);transition:transform .3s ease;z-index:1000;overflow-y:auto;max-height:60vh}
+  #ctrl-panel.open{transform:translateY(0) !important}
+  #mobile-ctrl-btn{display:flex}
+}
 
 body{overflow:hidden}
 #layout{flex:1 1 0;display:flex;overflow:hidden}
@@ -66,6 +72,18 @@ body{overflow:hidden}
 #layer-toggle span{font-size:10px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.5px;margin-right:4px}
 .tog-btn{padding:4px 10px;border-radius:5px;border:1px solid #d1d5db;background:#f9fafb;color:#374151;font-size:11px;font-weight:600;cursor:pointer;transition:all .15s}
 .tog-btn.active{background:#2563eb;color:#fff;border-color:#2563eb}
+
+#mobile-ctrl-btn{display:none;position:fixed;bottom:20px;left:16px;z-index:1001;background:#1f2937;color:#fff;border:none;border-radius:99px;padding:10px 22px;font-size:13px;font-weight:600;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.3);align-items:center;gap:6px}
+@media(max-width:768px){
+  #main{flex-direction:column}
+  #layout{flex-direction:column}
+  #map-wrap{height:100vh;width:100%}
+  #sidebar{position:fixed !important;bottom:0 !important;left:0 !important;right:0 !important;top:auto !important;width:100% !important;height:60vh;transform:translateY(100%);transition:transform .3s ease;z-index:1000;border-top:2px solid #e5e7eb;border-radius:12px 12px 0 0;overflow-y:auto}
+  #sidebar.open{transform:translateY(0) !important}
+  #mobile-ctrl-btn{display:flex}
+  .desktop-only{display:none !important}
+}
+
 </style>
 </head>
 <body>
@@ -81,7 +99,7 @@ body{overflow:hidden}
 <div id="layout">
 
 <div id="sidebar">
-  <div class="sb-sec">
+  <div class="sb-sec desktop-only">
     <h3>Network Summary</h3>
     <div class="tt-row"><span>30 mph segments</span><span class="tt-val">420</span></div>
     <div class="tt-row"><span>Avg crash reduction</span><span class="tt-val">21.8%</span></div>
@@ -103,7 +121,7 @@ body{overflow:hidden}
     <h3>Segment Detail</h3>
     <div id="sb-content" class="sb-empty">Click a coloured road to see the predicted impact of a 30→20 mph reduction.</div>
   </div>
-  <div class="sb-sec">
+  <div class="sb-sec desktop-only">
     <h3>About this analysis</h3>
     <div style="font-size:10.5px;color:#374151;line-height:1.55;">
       <p style="margin:0 0 7px">DriveFactor has built a proprietary dataset of every 30→20 mph intervention across the UK road network, combining road geometry, traffic, and crash records.</p>
@@ -151,10 +169,12 @@ function _riskRamp(t){ return interpStops(['#2166ac','#1a9641','#ffffbf','#d7191
 function _glareRamp(t){ return interpStops(['#d1d5db','#e5e7eb','#fef08a','#f97316','#dc2626'],t); }
 // light-blue → dark-blue  (absolute risk / VKT)
 function _blueRamp(t){ return interpStops(['#deebf7','#9ecae1','#4292c6','#2171b5','#084594'],t); }
-// diverging blue→white→red  (OR curves / dynamic multiplier)
-function _divRamp(t){ return interpStops(['#2166ac','#74add1','#f7f7f7','#f46d43','#a50026'],t); }
+// diverging blue→slate→red  (OR curves / dynamic multiplier)
+// Centre is #94a3b8 (slate-400) so baseline OR=1.0 roads are clearly visible
+// against the white Carto basemap.
+function _divRamp(t){ return interpStops(['#1d4ed8','#60a5fa','#94a3b8','#fb923c','#b91c1c'],t); }
 // alias for OR (same diverging ramp)
-function _orToT(v){const lo=0.7,hi=3.0;if(v<=lo)return 0;if(v>=hi)return 1;return Math.log(v/lo)/Math.log(hi/lo);}
+function _orToT(v){const lo=0.85,hi=1.6;if(v<=lo)return 0;if(v>=hi)return 1;return Math.log(v/lo)/Math.log(hi/lo);}
 function colOR(v){ return _divRamp(_orToT(v)); }
 
 
@@ -287,5 +307,6 @@ function showSegment(f) {
   `;
 }
 </script>
+<button id="mobile-ctrl-btn" onclick="document.getElementById('sidebar').classList.toggle('open')">&#9881; Controls</button>
 </body>
 </html>
