@@ -21,6 +21,7 @@ TARGETS = [
     ("data_products/sunglare.html",      "#map",    "thumb_sunglare.jpg"),
     ("data_products/absolute_risk.html", "#map",    "thumb_mvkt.jpg"),
     ("data_products/whatif.html",        "#wi-map", "thumb_whatif.jpg"),
+    ("data_products/whatif_cong.html",   "#wi-map", "thumb_whatif_cong.jpg"),
     ("data_products/intervention.html",  "#map",    "thumb_intervention.jpg"),
 ]
 

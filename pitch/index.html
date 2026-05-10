@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DriveFactor × Transport for Greater Manchester</title>
+
+  <!-- Reveal.js -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css" />
+
+  <!-- Inter font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Brand tokens — exact match to styles.css ── */
+    :root {
+      --white:       #ffffff;
+      --grey-50:     #f8f9fb;
+      --grey-100:    #f0f2f5;
+      --grey-200:    #dde3ea;
+      --grey-300:    #c4ced9;
+      --grey-500:    #7a8e9f;
+      --grey-700:    #4b5e72;
+      --text:        #1c2b3a;
+      --text-sub:    #4b5e72;
+      --text-muted:  #7a8e9f;
+      --blue:        #005fa3;
+      --blue-light:  #e8f1f9;
+      --blue-dark:   #004278;
+      --teal:        #0891b2;
+      --teal-light:  #e0f5fa;
+      --amber:       #b45309;
+      --amber-light: #fef3c7;
+      --red:         #b91c1c;
+      --red-light:   #fee2e2;
+      --green:       #166534;
+      --green-light: #dcfce7;
+      --radius:      6px;
+      --radius-lg:   10px;
+      --shadow-sm:   0 1px 3px rgba(0,0,0,0.08);
+      --shadow:      0 2px 8px rgba(0,0,0,0.10);
+      --shadow-lg:   0 4px 20px rgba(0,0,0,0.12);
+      --font:        'Inter', system-ui, sans-serif;
+    }
+
+    /* ── Reveal base ── */
+    .reveal, .reveal h1, .reveal h2, .reveal h3, .reveal h4,
+    .reveal p, .reveal li {
+      font-family: var(--font);
+      color: var(--text);
+    }
+    .reveal .slides section { text-align: left; padding: 0 !important; }
+    .reveal .progress { color: var(--blue); }
+    .reveal .controls { color: var(--blue); }
+
+    /* ── Slide structure (720px tall) ── */
+    .slide-wrap {
+      height: 720px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .slide-body {
+      flex: 1;
+      padding: 34px 64px 28px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* ── Slide nav bar — matches website navbar style ── */
+    .slide-nav {
+      height: 50px;
+      background: var(--white);
+      border-bottom: 1px solid var(--grey-200);
+      display: flex;
+      align-items: center;
+      padding: 0 64px;
+      flex-shrink: 0;
+    }
+    .slide-nav .brand {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+    .slide-nav .brand span { color: var(--blue); }
+    .slide-nav .nav-fill  { flex: 1; }
+    .slide-nav .nav-context {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--text-muted);
+    }
+
+    /* ── Typography ── */
+    .reveal h1 {
+      font-size: 2.55rem;
+      font-weight: 700;
+      line-height: 1.17;
+      letter-spacing: -0.025em;
+      margin: 0 0 0.35em;
+      text-transform: none;
+    }
+    .reveal h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      line-height: 1.22;
+      letter-spacing: -0.02em;
+      margin: 0 0 0.35em;
+      text-transform: none;
+    }
+    .reveal h3, .reveal h4 {
+      font-size: 0.925rem;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      margin: 0 0 5px;
+      text-transform: none;
+    }
+    .reveal p {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--text-sub);
+      margin: 0 0 0.65em;
+    }
+    .reveal ul { margin: 0; padding: 0; list-style: none; }
+    .reveal li { font-size: 0.87rem; line-height: 1.65; color: var(--text-sub); }
+
+    /* ── Section label — matches .section-label in styles.css ── */
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--blue);
+      margin-bottom: 8px;
+    }
+
+    /* ── Hero label — matches .home-hero .label ── */
+    .hero-label {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--blue);
+      background: var(--blue-light);
+      padding: 3px 10px;
+      border-radius: 4px;
+      margin-bottom: 18px;
+    }
+
+    /* ── Columns ── */
+    .cols { display: grid; gap: 40px; align-items: start; }
+    .cols-2       { grid-template-columns: 1fr 1fr; }
+    .cols-55-45   { grid-template-columns: 1.15fr 0.85fr; }
+    .cols-3       { grid-template-columns: 1fr 1fr 1fr; }
+
+    /* ── Layer list — exact match to website methodology section ── */
+    .layer-list {
+      border: 1px solid var(--grey-200);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--white);
+      margin-top: 20px;
+    }
+    .layer-item {
+      display: grid;
+      grid-template-columns: 44px 1fr 160px;
+      gap: 18px;
+      align-items: start;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--grey-200);
+    }
+    .layer-item:last-child { border-bottom: none; }
+    .layer-item.highlight  { border-left: 3px solid var(--green); background: #fafdfb; }
+    .layer-item.no-meta    { grid-template-columns: 44px 1fr; }
+    .layer-num {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      font-weight: 800;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .layer-content h4 {
+      font-size: 0.925rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 5px;
+    }
+    .layer-content p {
+      font-size: 0.84rem;
+      color: var(--text-sub);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .layer-meta { text-align: right; padding-top: 2px; }
+    .layer-meta .metric-label {
+      font-size: 0.73rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .layer-meta .note-pill {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 600;
+      background: var(--green-light);
+      color: var(--green);
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-top: 6px;
+    }
+
+    /* ── Product grid with thumbnails — matches website .product-card ── */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .product-card {
+      border: 1px solid var(--grey-200);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
+    }
+    .product-card-thumb {
+      height: 86px;
+      background: var(--grey-100);
+      overflow: hidden;
+      border-bottom: 1px solid var(--grey-200);
+    }
+    .product-card-thumb img {
+      width: 100% !important;
+      height: 100% !important;
+      max-width: none !important;
+      max-height: none !important;
+      object-fit: cover !important;
+      object-position: center !important;
+      display: block !important;
+      margin: 0 !important;
+      border: none !important;
+    }
+    .product-card-body { padding: 12px 14px 14px; flex: 1; }
+    .product-card-tag {
+      font-size: 0.67rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 5px;
+    }
+    .product-card h3 {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+    .product-card p {
+      font-size: 0.77rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* ── Detail note — matches .detail-note in styles.css ── */
+    .detail-note {
+      padding: 12px 16px;
+      background: var(--blue-light);
+      border-left: 3px solid var(--blue);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-size: 0.85rem;
+      color: var(--text-sub);
+      line-height: 1.65;
+      margin-top: 4px;
+    }
+
+    /* ── Vision numbered cards (slide 3 right col) ── */
+    .vision-card {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: var(--grey-50);
+      border: 1px solid var(--grey-200);
+      border-radius: var(--radius-lg);
+      padding: 15px 17px;
+    }
+    .vision-num { flex-shrink: 0; text-align: center; min-width: 38px; }
+    .vision-num .vn-label {
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+    .vision-num .vn-val {
+      font-size: 1.4rem;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+    .vision-card p { font-size: 0.84rem; margin: 0; line-height: 1.6; }
+
+    /* ── Stats strip (title slide bottom) ── */
+    .stats-strip {
+      background: var(--grey-50);
+      border-top: 1px solid var(--grey-200);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      flex-shrink: 0;
+    }
+    .stat-cell {
+      padding: 14px 24px;
+      border-right: 1px solid var(--grey-200);
+    }
+    .stat-cell:last-child { border-right: none; }
+    .stat-number {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 3px;
+    }
+    .stat-label { font-size: 0.74rem; color: var(--text-muted); line-height: 1.4; }
+
+    /* ── Title slide logo row ── */
+    .logo-row { display: flex; align-items: center; gap: 14px; margin-top: 32px; }
+    .logo-box {
+      background: var(--blue);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 9px 17px;
+      border-radius: var(--radius);
+    }
+    .logo-box span { color: rgba(255,255,255,0.7); }
+    .logo-x { font-size: 1rem; color: var(--text-muted); font-weight: 300; }
+    .logo-partner {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-sub);
+      border: 1.5px solid var(--grey-200);
+      padding: 9px 17px;
+      border-radius: var(--radius);
+    }
+
+    /* ── Flow diagram (Aimsun slide) ── */
+    .flow-diagram { display: flex; align-items: center; margin: 16px 0 18px; }
+    .flow-box {
+      flex: 1;
+      background: var(--grey-50);
+      border: 1px solid var(--grey-200);
+      border-radius: var(--radius-lg);
+      padding: 14px 12px;
+      text-align: center;
+    }
+    .flow-box .flow-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.35;
+    }
+    .flow-box .flow-sub {
+      font-size: 0.71rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+    .flow-box.highlight { border-color: var(--blue); background: var(--blue-light); }
+    .flow-box.highlight .flow-label { color: var(--blue); }
+    .flow-arrow { font-size: 1.1rem; color: var(--grey-300); flex-shrink: 0; padding: 0 8px; }
+
+    /* ── Roadmap bullet list ── */
+    .roadmap-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+    .roadmap-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 0.87rem; color: var(--text-sub); }
+    .roadmap-list .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--blue); margin-top: 6px; flex-shrink: 0;
+    }
+
+    /* ── CTA box ── */
+    .cta-box { background: var(--blue); border-radius: var(--radius-lg); padding: 26px 30px; }
+    .cta-box h3 { color: #fff; font-size: 1.15rem; margin-bottom: 10px; }
+    .cta-box p  { color: rgba(255,255,255,0.75); font-size: 0.875rem; margin-bottom: 0; }
+
+    /* ── Demo slide layout ── */
+    .demo-slide-wrap { display:flex; flex-direction:column; width:1280px; height:720px; overflow:hidden; }
+    .demo-slide-wrap .demo-strip { position:static; flex:0 0 auto; }
+    .demo-slide-wrap iframe { flex:1 1 0; border:none; min-height:0; display:block; }
+
+    /* ── Demo overlay strip ── */
+    .demo-strip {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      background: rgba(0,47,80,0.88);
+      backdrop-filter: blur(4px);
+      padding: 10px 64px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 10;
+    }
+    .demo-strip .brand { font-family: var(--font); font-size: 0.85rem; font-weight: 700; color: #fff; }
+    .demo-strip .brand span { color: rgba(255,255,255,0.6); }
+    .demo-strip .demo-sep { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.35); }
+    .demo-strip .demo-title { font-family: var(--font); font-size: 0.82rem; font-weight: 500; color: rgba(255,255,255,0.8); flex: 1; }
+    .demo-strip .badge {
+      font-family: var(--font); font-size: 0.67rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.9);
+      padding: 3px 9px; border-radius: 4px;
+    }
+
+    /* ── Print ── */
+    @media print {
+      .demo-strip { position: static; margin-bottom: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="reveal">
+  <div class="slides">
+
+    <!-- ══ SLIDE 1 — Title ══ -->
+    <section data-background-color="#f8f9fb">
+      <div class="slide-wrap">
+        <div class="slide-body" style="justify-content:center;padding-bottom:0;">
+          <div class="hero-label">Predictive risk intelligence for Greater Manchester</div>
+          <h1 style="max-width:820px;">Building a Next-Generation Road Risk Intelligence Platform</h1>
+          <p style="font-size:1rem;max-width:660px;line-height:1.75;margin-top:4px;">
+            Saving lives with the world's most advanced road risk monitoring.
+          </p>
+          <div class="logo-row">
+            <div class="logo-box"><span>Drive</span>Factor</div>
+          </div>
+        </div>
+        <div class="stats-strip">
+          <div class="stat-cell">
+            <div class="stat-number">1 Million+</div>
+            <div class="stat-label">Road collisions analysed</div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-number">Multi-layer</div>
+            <div class="stat-label">Infrastructure, environment and traffic</div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-number">Static + Dynamic</div>
+            <div class="stat-label">Consideration of persistent and changing risk factors</div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-number">Evidence-based</div>
+            <div class="stat-label">Methods grounded in published road safety research</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SLIDE 2 — The Opportunity ══ -->
+    <section data-background-color="#ffffff">
+      <div class="slide-wrap">
+        <div class="slide-nav">
+          <span class="brand"><span>Drive</span>Factor</span>
+          <span class="nav-fill"></span>
+          <span class="nav-context">The Opportunity</span>
+        </div>
+        <div class="slide-body">
+        <div class="section-label">The Opportunity</div>
+          <h2 style="margin-top:14px;">Harnessing the Data Revolution</h2>
+          <p style="font-size:0.97rem;max-width:720px;line-height:1.7;margin:16px 0 0;">
+            Our roads generate more data than ever before. We must leverage its potential to save lives.
+          </p>
+          <div style="margin-top:16px;">
+            <div class="layer-list" style="margin-top:0;">
+                <div class="layer-item no-meta">
+                  <div class="layer-num" style="background:#fee2e2;color:#b91c1c;">01</div>
+                  <div class="layer-content">
+                    <h4>Road safety is still largely reactive</h4>
+                    <p>This is improving, but slowly. DriveFactor aims to change that.</p>
+                  </div>
+                </div>
+                <div class="layer-item no-meta">
+                  <div class="layer-num" style="background:#fff3e0;color:#b45309;">02</div>
+                  <div class="layer-content">
+                    <h4>Data is abundant, but fragmented</h4>
+                    <p>Sensor feeds, floating car data, weather, road geometry, outcomes from road safety interventions. No single platform has integrated them for safety intelligence.</p>
+                  </div>
+                </div>
+                <div class="layer-item no-meta">
+                  <div class="layer-num" style="background:#dcfce7;color:#166534;">03</div>
+                  <div class="layer-content">
+                    <h4>Greater Manchester is uniquely positioned</h4>
+                    <p>TfGM is already generating extensive data. The data infrastructure for a predictive safety layer is already in place.</p>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SLIDE 3 — Our Vision ══ -->
+    <section data-background-color="#ffffff">
+      <div class="slide-wrap">
+        <div class="slide-nav">
+          <span class="brand"><span>Drive</span>Factor</span>
+          <span class="nav-fill"></span>
+          <span class="nav-context">Our Vision</span>
+        </div>
+        <div class="slide-body">
+          <div class="section-label">Our Vision</div>
+          <h2 style="margin-top:6px;max-width:960px;margin-bottom:70px;">
+            The world's most advanced road risk intelligence platform, enabling real-time and longitudinal risk insights.
+          </h2>
+           <p>
+            The UK data landscape is now mature enough to enable predictive risk insights for proactive safety management. Integrating and analysing this data helps turn complex information into clear, evidence-based action.
+            </p>
+            <p>
+            Proven methods from the academic literature, combined with cutting-edge AI and data analysis, allow us to model risk with unprecedented precision and granularity.
+            </p>
+            <p>
+            Monitoring infrastructure changes, changing traffic patterns and the impact of safety interventions allows us to identify emerging trends, prioritise high-risk locations and help determine the most effective interventions for every road.
+            </p>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:70px;">
+            <div class="vision-card" style="border-left:3px solid var(--blue);flex-direction:column;gap:12px;">
+              <div style="display:flex;align-items:center;gap:12px;">
+                <div class="vn-val" style="color:var(--blue);font-size:1.4rem;font-weight:800;line-height:1;">01</div>
+                <div class="vn-label" style="color:var(--blue);font-size:0.66rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;">Integrate</div>
+              </div>
+              <p>Fuse every relevant data stream: collision records, road geometry, sensor feeds, floating car data, weather, into a continuously-updated model.</p>
+            </div>
+            <div class="vision-card" style="border-left:3px solid var(--green);flex-direction:column;gap:12px;">
+              <div style="display:flex;align-items:center;gap:12px;">
+                <div class="vn-val" style="color:var(--green);font-size:1.4rem;font-weight:800;line-height:1;">02</div>
+                <div class="vn-label" style="color:var(--green);font-size:0.66rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;">Predict</div>
+              </div>
+              <p>Geospatial AI trained on over one million collisions delivers high-resolution risk predictions: per hour, under different environmental and traffic conditions.</p>
+            </div>
+            <div class="vision-card" style="border-left:3px solid var(--amber);flex-direction:column;gap:12px;">
+              <div style="display:flex;align-items:center;gap:12px;">
+                <div class="vn-val" style="color:var(--amber);font-size:1.4rem;font-weight:800;line-height:1;">03</div>
+                <div class="vn-label" style="color:var(--amber);font-size:0.66rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;">Act</div>
+              </div>
+              <p>Decompose the specific factors driving risk on each segment. Identify the highest-impact intervention. Quantify the expected collision reduction.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SLIDE 4 — Risk Architecture ══ -->
+    <section data-background-color="#f8f9fb">
+      <div class="slide-wrap">
+        <div class="slide-nav">
+          <span class="brand"><span>Drive</span>Factor</span>
+          <span class="nav-fill"></span>
+          <span class="nav-context">Risk Architecture</span>
+        </div>
+        <div class="slide-body">
+          <div class="section-label">How it works</div>
+          <h2>A Multi-Layer Risk Architecture</h2>
+          <p style="max-width:660px;margin-bottom:0;">
+            Every road segment carries a unique risk fingerprint, driven by its physical design, surrounding road context, traffic flow and environmental conditions. DriveFactor models all of these factors simultaneously in one continuously-updated engine.
+          </p>
+          <div class="layer-list">
+            <div class="layer-item">
+              <div class="layer-num" style="background:#fff3e0;color:#b45309;">L1</div>
+              <div class="layer-content">
+                <h4>Road environment &amp; collision history</h4>
+                <p>Structural risk grounded in road geometry, junction design, carriageway layout and over a decade of Stats19 recorded collision data. The baseline fingerprint of every segment.</p>
+              </div>
+              <div class="layer-meta">
+                <div class="metric-label">Infrastructure · Collision data<br>Road geometry · Features</div>
+              </div>
+            </div>
+            <div class="layer-item">
+              <div class="layer-num" style="background:#e8f5e9;color:#166534;">L2</div>
+              <div class="layer-content">
+                <h4>Temporal &amp; environmental conditions</h4>
+                <p>The same road in November rain at dusk carries a categorically different risk profile to a dry July afternoon. Hour, season, and weather impacts are all modelled.</p>
+              </div>
+              <div class="layer-meta">
+                <div class="metric-label">Hour · Season · Weather<br>Darkness · Precipitation</div>
+              </div>
+            </div>
+            <div class="layer-item">
+              <div class="layer-num" style="background:#e8f1f9;color:#005fa3;">L3</div>
+              <div class="layer-content">
+                <h4>Traffic volume &amp; speed behaviour</h4>
+                <p>Measured and modelled flow, speeds and driving behaviour. Congestion, unexpected volume surges and speed deviation all drive anomalous risk.</p>
+              </div>
+              <div class="layer-meta">
+                <div class="metric-label">Traffic Volume · Speed<br>Flow estimates · Behaviour</div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SLIDE 5 — Platform ══ -->
+    <section data-background-color="#ffffff">
+      <div class="slide-wrap">
+        <div class="slide-nav">
+          <span class="brand"><span>Drive</span>Factor</span>
+          <span class="nav-fill"></span>
+          <span class="nav-context">The Platform</span>
+        </div>
+        <div class="slide-body">
+          <div class="section-label">The DriveFactor Platform</div>
+          <h2>Data Insights From the Road Risk Engine</h2>
+          <div class="product-grid">
+            <div class="product-card">
+              <div class="product-card-thumb" style="background:#fff8f0;">
+                <img src="../images/thumbs/thumb_spatial.jpg" alt="Spatial Risk Map">
+              </div>
+              <div class="product-card-body">
+                <div class="product-card-tag" style="color:#b45309;">Network screening</div>
+                <h3>Spatial Risk Maps</h3>
+                <p>Predicted collision probability per segment.</p>
+              </div>
+            </div>
+            <div class="product-card">
+              <div class="product-card-thumb" style="background:#f0f9f0;">
+                <img src="../images/thumbs/thumb_dynamic.jpg" alt="Dynamic Risk">
+              </div>
+              <div class="product-card-body">
+                <div class="product-card-tag" style="color:#166534;">Real-time conditions</div>
+                <h3>Dynamic Risk Model</h3>
+                <p>Risk scored hour by hour, condition by condition. Where and when the network is most dangerous.</p>
+              </div>
+            </div>
+            <div class="product-card">
+              <div class="product-card-thumb" style="background:#fffbf0;">
+                <img src="../images/thumbs/thumb_sunglare.jpg" alt="Sun Glare">
+              </div>
+              <div class="product-card-body">
+                <div class="product-card-tag" style="color:#92400e;">Environmental hazards</div>
+                <h3>Sun Glare Intensity</h3>
+                <p>Solar trajectory mapped to road geometry. Severe glare exposure by segment, hour and season.</p>
+              </div>
+            </div>
+            <div class="product-card">
+              <div class="product-card-thumb" style="background:#fdf4ff;">
+                <img src="../images/thumbs/thumb_whatif.jpg" alt="Traffic Scenario Planner">
+              </div>
+              <div class="product-card-body">
+                <div class="product-card-tag" style="color:#7e22ce;">Speed &amp; flow modelling</div>
+                <h3>Traffic Risk Modelling</h3>
+                <p>Simulate the safety impact of volume and congestion changes before they happen.</p>
+              </div>
+            </div>
+            <div class="product-card">
+              <div class="product-card-thumb" style="background:#f0fdf4;">
+                <img src="../images/thumbs/thumb_intervention.jpg" alt="Intervention Planner">
+              </div>
+              <div class="product-card-body">
+                <div class="product-card-tag" style="color:#166534;">Scheme appraisal</div>
+                <h3>Intervention Planner</h3>
+                <p>Predict expected collision reduction from safety interventions, grounded in measured UK scheme outcomes.</p>
+              </div>
+            </div>
+            <div class="product-card">
+              <div class="product-card-thumb" style="background:#dde8f4;">
+                <img src="../images/thumbs/thumb_mvkt.jpg" alt="Absolute Road Risk">
+              </div>
+              <div class="product-card-body">
+                <div class="product-card-tag" style="color:var(--blue);">Journey-level risk</div>
+                <h3>Absolute Road Risk</h3>
+                <p>Risk per vehicle kilometre travelled for identifying genuinely dangerous roads.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SLIDE 6 — Demo: Dynamic Risk ══ -->
+    <section style="padding:0">
+      <div class="demo-slide-wrap">
+        <div class="demo-strip">
+          <span class="brand"><span>Drive</span>Factor</span>
+          <span class="demo-sep"></span>
+          <span class="demo-title">Dynamic Risk Model — risk scored per segment, per hour, per condition</span>
+          <span class="badge">Live Demo</span>
+        </div>
+        <iframe src="../data_products/dynamic_risk.html"></iframe>
+      </div>
+    </section>
+
+    <!-- ══ SLIDE 7 — Demo: Sun Glare ══ -->
+    <section style="padding:0">
+      <div class="demo-slide-wrap">
+        <div class="demo-strip">
+          <span class="brand"><span>Drive</span>Factor</span>
+          <span class="demo-sep"></span>
+          <span class="demo-title">Sun Glare Intelligence — a hidden hazard, now precisely mapped by road, hour and season</span>
+          <span class="badge">Live Demo</span>
+        </div>
+        <iframe src="../data_products/sunglare.html"></iframe>
+      </div>
+    </section>
+
+    <!-- ══ SLIDE 8 — Demo: Congestion Risk ══ -->
+    <section style="padding:0">
+      <div class="demo-slide-wrap">
+        <div class="demo-strip">
+          <span class="brand"><span>Drive</span>Factor</span>
+          <span class="demo-sep"></span>
+          <span class="demo-title">Traffic Scenario Planner — see what congestion does to collision risk, segment by segment</span>
+          <span class="badge">Live Demo</span>
+        </div>
+        <iframe src="../data_products/whatif.html"></iframe>
+      </div>
+    </section>
+
+    <!-- ══ SLIDE 9 — Demo: Intervention Planner ══ -->
+    <section style="padding:0">
+      <div class="demo-slide-wrap">
+        <div class="demo-strip">
+          <span class="brand"><span>Drive</span>Factor</span>
+          <span class="demo-sep"></span>
+          <span class="demo-title">Intervention Planner — predict lives saved from speed limit changes, corridor by corridor</span>
+          <span class="badge">Live Demo</span>
+        </div>
+        <iframe src="../data_products/intervention.html"></iframe>
+      </div>
+    </section>
+
+    <!-- ══ SLIDE 10 — Aimsun Integration ══ -->
+    <section data-background-color="#ffffff">
+      <div class="slide-wrap">
+        <div class="slide-nav">
+          <span class="brand"><span>Drive</span>Factor</span>
+          <span class="nav-fill"></span>
+          <span class="nav-context">Integration</span>
+        </div>
+        <div class="slide-body">
+          <div class="section-label">DriveFactor × Aimsun × TfGM</div>
+          <h2>TfGM already has the traffic intelligence.<br>DriveFactor turns it into risk intelligence.</h2>
+          <p style="max-width:700px;margin-bottom:0;">
+            Aimsun produces highly accurate predictions of flow and speed across every link in the Greater Manchester Road
+            network. Aimsun's outputs become part of the dynamic input to our risk engine, 
+            providing advanced risk intelligence calibrated specifically to this network.
+          </p>
+          <div class="flow-diagram">
+            <div class="flow-box">
+              <div class="flow-label">Aimsun<br>Traffic Model</div>
+              <div class="flow-sub">Predicted flow &amp; speed<br>per link, per time step</div>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-box highlight">
+              <div class="flow-label">DriveFactor<br>Risk Engine</div>
+              <div class="flow-sub">Predictive Risk<br> Models</div>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-box">
+              <div class="flow-label">Greater Manchester Live<br> Layer</div>
+              <div class="flow-sub">Continuously updated traffic flow and risk models</div>
+            </div>
+          </div>
+          <div class="detail-note" style="max-width:700px;">
+            Our collaboration creates the most advanced road digital twin ever built. Calibrated and deployed for the whole of Greater Manchester's road network.
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SLIDE 11 — GM Roadmap ══ -->
+    <section data-background-color="#f8f9fb">
+      <div class="slide-wrap">
+        <div class="slide-nav">
+          <span class="brand"><span>Drive</span>Factor</span>
+          <span class="nav-fill"></span>
+          <span class="nav-context">The Roadmap</span>
+        </div>
+        <div class="slide-body">
+          <div class="section-label">The Roadmap</div>
+          <h2>A Greater Manchester risk model that gets sharper every single day.</h2>
+          <p style="margin-top:14px;max-width:780px;">
+            We deploy fast, using our national model as the foundation.
+            We calibrate this specifically to Greater Manchester roads, ingesting
+            data from TfGM's network, and building a model that learns continuously
+            from every new data point the city generates.
+          </p>
+          <div class="layer-list" style="margin-top:16px;">
+            <div class="layer-item no-meta">
+              <div class="layer-num" style="background:#fff3e0;color:#b45309;">P1</div>
+              <div class="layer-content">
+                <h4>Phase 1 — Now</h4>
+                <p>National model, Integrated with Aimsun's Platform. Spatial and dynamic risk maps deployed. Aimsun predictions feeding the Risk Engine.</p>
+              </div>
+            </div>
+            <div class="layer-item no-meta">
+              <div class="layer-num" style="background:#e8f5e9;color:#166534;">P2</div>
+              <div class="layer-content">
+                <h4>Phase 2 — 6–12 months</h4>
+                <p>Greater Manchester calibration for dynamic risk models, sensor data-integrated. Predictions sharpen significantly.</p>
+              </div>
+            </div>
+            <div class="layer-item no-meta">
+              <div class="layer-num" style="background:#e8f1f9;color:#005fa3;">P3</div>
+              <div class="layer-content">
+                <h4>Phase 3 — Ongoing</h4>
+                <p>Self-improving models, live API, full integration across TfGM systems. TfGM becomes the UK benchmark for evidence-based, predictive road safety management.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SLIDE 12 — Next Steps ══ -->
+    <section data-background-color="#ffffff">
+      <div class="slide-wrap">
+        <div class="slide-nav">
+          <span class="brand"><span>Drive</span>Factor</span>
+          <span class="nav-fill"></span>
+          <span class="nav-context">Next Steps</span>
+        </div>
+        <div class="slide-body">
+          <div class="section-label">Next Steps</div>
+          <h2>Designing the Pilot</h2>
+          <div class="cols cols-2" style="margin-top:14px;align-items:start;">
+            <div>
+              <p>
+                What are the Key Metrics that matter most to TfGM?
+              </p>
+              <ul class="roadmap-list" style="margin-top:14px;">
+                <li><span class="dot"></span>What Sensor Data is Available?</li>
+                <li><span class="dot"></span>How do we measure success?</li>
+                <li><span class="dot"></span>What alerting mechanisms are needed?</li>
+                <li><span class="dot"></span>How do we integrate into existing workflows?</li>
+                <li><span class="dot"></span>What interventions can currently be implemented to help manage road risk? </li>
+                <li><span class="dot"></span>Joint review of outputs against TfGM's existing safety intelligence</li>
+                <li><span class="dot"></span>Agree roadmap</li>
+              </ul>
+            </div>
+            <div>
+              <div class="cta-box">
+                <h3>Lead the future of UK road safety management</h3>
+                <p style="margin-top:18px;font-size:1rem;">
+                  <strong style="color:#fff;">hello@drivefactor.ai</strong>
+                </p>
+                <p style="font-size:0.79rem;margin-top:4px;color:rgba(255,255,255,0.5);">
+                  drivefactor.ai
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /.slides -->
+</div><!-- /.reveal -->
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: 'c/t',
+    transition: 'fade',
+    transitionSpeed: 'fast',
+    backgroundTransition: 'fade',
+    controls: true,
+    progress: true,
+    center: false,
+    width: 1280,
+    height: 720,
+    margin: 0,
+    preloadIframes: null,
+    plugins: []
+  });
+</script>
+
+</body>
+</html>
+
