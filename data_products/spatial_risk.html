@@ -102,7 +102,7 @@ function t(v){ return Math.max(0,Math.min(1,(v-P5)/(P95-P5))); }
 function col(v){ return _rampColor(t(v)); }
 
 const map = L.map('map',{zoomControl:true}).setView([54.563,-1.329],13);
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=__CARTO_KEY__',{
   attribution:'&copy; OpenStreetMap &copy; CartoDB',maxZoom:19
 }).addTo(map);
 

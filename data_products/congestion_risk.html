@@ -355,7 +355,7 @@ function drawCurve(sr) {
 
 // ── Map ────────────────────────────────────────────────────────────────────────
 const crMap = L.map('cr-map').setView([54.563, -1.329], 13);
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=__CARTO_KEY__', {
   attribution: '&copy; OpenStreetMap &copy; CartoDB', maxZoom: 19
 }).addTo(crMap);
 lgLayer = L.layerGroup().addTo(crMap);
